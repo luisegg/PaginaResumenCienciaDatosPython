@@ -100,6 +100,7 @@
                             <li><code>filepath_or_buffer</code>: str, path object or file-like object</li>
                             <li><code>sep</code>: str, default ','</li>
                             <li><code>header</code>: int, list of int, default 'infer'</li>
+                            <li><code>names</code>: list of str, default None</li>
                             <li><code>encoding</code>: str, default None</li>
                         </ul>
 
@@ -112,9 +113,9 @@ df = pd.read_csv('data.csv')
 # With specific parameters
 df = pd.read_csv('data.csv',
                  sep=';',
-                 encoding='utf-8',
-                 header=0,
-                 na_values=['NA', 'missing'])</code></pre>
+                 header=None,
+                 names=['col1', 'col2', 'col3'],
+                 encoding='utf-8')</code></pre>
 
                         <h3>Common Use Cases</h3>
                         <ul>
