@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python for Data Science and Machine Learning - CRISP-ML(Q)</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">CRISP-ML(Q)</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#phases">Phases</a></li>
+                <li><a href="#resources">Resources</a></li>
+            </ul>
+        </nav>
+        <div class="hero">
+            <h1>Python for Data Science and Machine Learning</h1>
+            <p>A guide to libraries and functions organized by CRISP-ML(Q) phases</p>
+        </div>
+    </header>
+
+    <main>
+        <section id="phases" class="phases-section">
+            <h2>CRISP-ML(Q) Model Phases</h2>
+            
+            <div class="phase-card">
+                <h3>1. Business Understanding</h3>
+                <p>Definition of project objectives and requirements.</p>
+                <div class="functions">
+                    <h4>Libraries and Tools:</h4>
+                    <ul>
+                        <li><code>jupyter</code> - Documentation and exploratory analysis</li>
+                        <li><code>pandas-profiling</code> - Initial report generation</li>
+                    </ul>
+                </div>
+            </div>
+
+            <a href="data-understanding.html" class="phase-card-link">
+                <div class="phase-card">
+                    <h3>2. Data Understanding</h3>
+                    <p>Data exploration and initial analysis.</p>
+                    <div class="functions">
+                        <h4>Libraries and Functions:</h4>
+                        <ul>
+                            <li><code>pandas.read_csv()</code> - Load data</li>
+                            <li><code>pandas.DataFrame.describe()</code> - Descriptive statistics</li>
+                            <li><code>pandas.DataFrame.info()</code> - Dataset information</li>
+                            <li><code>seaborn.heatmap()</code> - Visualize correlations</li>
+                        </ul>
+                    </div>
+                </div>
+            </a>
+
+            <div class="phase-card">
+                <h3>3. Data Preparation</h3>
+                <p>Data cleaning and transformation.</p>
+                <div class="functions">
+                    <h4>Libraries and Functions:</h4>
+                    <ul>
+                        <li><code>sklearn.preprocessing</code> - Scaling and normalization</li>
+                        <li><code>pandas.get_dummies()</code> - Categorical variable encoding</li>
+                        <li><code>numpy.fillna()</code> - Missing value handling</li>
+                        <li><code>sklearn.impute</code> - Data imputation</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="phase-card">
+                <h3>4. Modeling</h3>
+                <p>Model building and training.</p>
+                <div class="functions">
+                    <h4>Libraries and Functions:</h4>
+                    <ul>
+                        <li><code>sklearn.model_selection</code> - Data splitting and cross-validation</li>
+                        <li><code>sklearn.ensemble</code> - Ensemble models</li>
+                        <li><code>sklearn.linear_model</code> - Linear models</li>
+                        <li><code>tensorflow/keras</code> - Deep Learning</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="phase-card">
+                <h3>5. Evaluation</h3>
+                <p>Model performance and quality assessment.</p>
+                <div class="functions">
+                    <h4>Libraries and Functions:</h4>
+                    <ul>
+                        <li><code>sklearn.metrics</code> - Evaluation metrics</li>
+                        <li><code>matplotlib.pyplot</code> - Results visualization</li>
+                        <li><code>shap</code> - Model interpretability</li>
+                        <li><code>eli5</code> - Prediction explanation</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="phase-card">
+                <h3>6. Deployment and Monitoring</h3>
+                <p>Model implementation and production monitoring.</p>
+                <div class="functions">
+                    <h4>Libraries and Tools:</h4>
+                    <ul>
+                        <li><code>flask/fastapi</code> - APIs for serving models</li>
+                        <li><code>mlflow</code> - Lifecycle management</li>
+                        <li><code>streamlit</code> - Dashboard creation</li>
+                        <li><code>prometheus</code> - Metrics monitoring</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="phase-card">
+                <h3>7. Quality Assurance</h3>
+                <p>Quality control throughout the process.</p>
+                <div class="functions">
+                    <h4>Libraries and Tools:</h4>
+                    <ul>
+                        <li><code>pytest</code> - Code testing</li>
+                        <li><code>great_expectations</code> - Data validation</li>
+                        <li><code>evidently</code> - Quality monitoring</li>
+                        <li><code>dvc</code> - Data versioning</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="resources" class="resources-section">
+            <h2>Additional Resources</h2>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <h3>Official Documentation</h3>
+                    <ul>
+                        <li><a href="https://scikit-learn.org/stable/" target="_blank">Scikit-learn</a></li>
+                        <li><a href="https://pandas.pydata.org/docs/" target="_blank">Pandas</a></li>
+                        <li><a href="https://numpy.org/doc/" target="_blank">NumPy</a></li>
+                        <li><a href="https://www.tensorflow.org/docs" target="_blank">TensorFlow</a></li>
+                    </ul>
+                </div>
+                <div class="resource-card">
+                    <h3>Learning Platforms</h3>
+                    <ul>
+                        <li><a href="https://www.kaggle.com/learn" target="_blank">Kaggle Learn</a></li>
+                        <li><a href="https://www.datacamp.com" target="_blank">DataCamp</a></li>
+                        <li><a href="https://www.coursera.org" target="_blank">Coursera</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Created with ❤️ for the Data Science and Machine Learning community</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Understanding - CRISP-ML(Q)</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">CRISP-ML(Q)</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#phases">Phases</a></li>
+                <li><a href="index.html#resources">Resources</a></li>
+            </ul>
+        </nav>
+        <div class="hero">
+            <h1>Data Understanding Phase</h1>
+            <p>Comprehensive guide to libraries and functions for data exploration and analysis</p>
+        </div>
+    </header>
+
+    <nav class="breadcrumb">
+        <div class="container">
+            <a href="index.html">Home</a> > 
+            <a href="index.html#phases">Phases</a> > 
+            <span>Data Understanding</span>
+        </div>
+    </nav>
+
+    <div class="container">
+        <main class="detailed-phase">
+            <aside class="sidebar">
+                <div class="sidebar-section">
+                    <h3>Pandas</h3>
+                    <div class="sidebar-group">
+                        <h4>Data Loading</h4>
+                        <ul>
+                            <li><a href="#pd-read-csv" class="function-link">pd.read_csv()</a></li>
+                            <li><a href="#pd-read-excel" class="function-link">pd.read_excel()</a></li>
+                            <li><a href="#pd-read-sql" class="function-link">pd.read_sql()</a></li>
+                            <li><a href="#pd-read-json" class="function-link">pd.read_json()</a></li>
+                        </ul>
+                    </div>
+                    <div class="sidebar-group">
+                        <h4>Data Information</h4>
+                        <ul>
+                            <li><a href="#df-info" class="function-link">DataFrame.info()</a></li>
+                            <li><a href="#df-describe" class="function-link">DataFrame.describe()</a></li>
+                            <li><a href="#df-dtypes" class="function-link">DataFrame.dtypes</a></li>
+                            <li><a href="#df-shape" class="function-link">DataFrame.shape</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3>Visualization</h3>
+                    <div class="sidebar-group">
+                        <h4>Seaborn</h4>
+                        <ul>
+                            <li><a href="#sns-heatmap" class="function-link">sns.heatmap()</a></li>
+                            <li><a href="#sns-pairplot" class="function-link">sns.pairplot()</a></li>
+                            <li><a href="#sns-boxplot" class="function-link">sns.boxplot()</a></li>
+                        </ul>
+                    </div>
+                    <div class="sidebar-group">
+                        <h4>Matplotlib</h4>
+                        <ul>
+                            <li><a href="#plt-plot" class="function-link">plt.plot()</a></li>
+                            <li><a href="#plt-scatter" class="function-link">plt.scatter()</a></li>
+                            <li><a href="#plt-hist" class="function-link">plt.hist()</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3>Advanced Tools</h3>
+                    <div class="sidebar-group">
+                        <h4>Pandas-Profiling</h4>
+                        <ul>
+                            <li><a href="#profile-report" class="function-link">ProfileReport()</a></li>
+                            <li><a href="#profile-to-file" class="function-link">profile.to_file()</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </aside>
+
+            <section class="content-panel">
+                <div id="pd-read-csv" class="function-detail">
+                    <h2>pd.read_csv()</h2>
+                    <div class="function-info">
+                        <h3>Description</h3>
+                        <p>Read a comma-separated values (CSV) file into DataFrame.</p>
+                        
+                        <h3>Parameters</h3>
+                        <ul>
+                            <li><code>filepath_or_buffer</code>: str, path object or file-like object</li>
+                            <li><code>sep</code>: str, default ','</li>
+                            <li><code>header</code>: int, list of int, default 'infer'</li>
+                            <li><code>encoding</code>: str, default None</li>
+                        </ul>
+
+                        <h3>Example</h3>
+                        <pre><code>import pandas as pd
+
+# Basic usage
+df = pd.read_csv('data.csv')
+
+# With specific parameters
+df = pd.read_csv('data.csv',
+                 sep=';',
+                 encoding='utf-8',
+                 header=0,
+                 na_values=['NA', 'missing'])</code></pre>
+
+                        <h3>Common Use Cases</h3>
+                        <ul>
+                            <li>Loading data from CSV files</li>
+                            <li>Reading structured data with custom delimiters</li>
+                            <li>Handling different file encodings</li>
+                            <li>Managing missing values during import</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Template for other function details -->
+                <div class="function-detail hidden">
+                    <p>Select a function from the sidebar to view its details.</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <p>Created with ❤️ for the Data Science and Machine Learning community</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
