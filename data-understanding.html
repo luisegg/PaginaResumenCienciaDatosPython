@@ -6,6 +6,8 @@
     <title>Data Understanding - CRISP-ML(Q)</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/line-numbers/prism-line-numbers.min.css" rel="stylesheet" />
 </head>
 <body>
     <header class="header">
@@ -40,17 +42,13 @@
                         <h4>Data Loading</h4>
                         <ul>
                             <li><a href="#pd-read-csv" class="function-link">pd.read_csv()</a></li>
-                            <li><a href="#pd-read-excel" class="function-link">pd.read_excel()</a></li>
-                            <li><a href="#pd-read-sql" class="function-link">pd.read_sql()</a></li>
-                            <li><a href="#pd-read-json" class="function-link">pd.read_json()</a></li>
                         </ul>
                     </div>
                     <div class="sidebar-group">
-                        <h4>Data Information</h4>
+                        <h4>Data Description</h4>
                         <ul>
                             <li><a href="#df-info" class="function-link">DataFrame.info()</a></li>
                             <li><a href="#df-describe" class="function-link">DataFrame.describe()</a></li>
-                            <li><a href="#df-dtypes" class="function-link">DataFrame.dtypes</a></li>
                             <li><a href="#df-shape" class="function-link">DataFrame.shape</a></li>
                         </ul>
                     </div>
@@ -105,7 +103,7 @@
                         </ul>
 
                         <h3>Example</h3>
-                        <pre><code>import pandas as pd
+                        <pre class="line-numbers"><code class="language-python">import pandas as pd
 
 # Basic usage
 df = pd.read_csv('data.csv')
@@ -127,7 +125,201 @@ df = pd.read_csv('data.csv',
                     </div>
                 </div>
 
-                <!-- Template for other function details -->
+                <div id="df-info" class="function-detail">
+                    <h2>DataFrame.info()</h2>
+                    <div class="function-info">
+                        <h3>Description</h3>
+                        <p>Print a concise summary of a DataFrame, including the index, columns, non-null values, dtype and memory usage. This method is essential for initial data exploration and understanding the structure of your dataset.</p>
+                        
+                        <h3>Parameters</h3>
+                        <ul>
+                            <li><code>max_cols</code>: int, optional
+                                <ul>
+                                    <li>Maximum number of columns to show</li>
+                                    <li>If None, shows all columns</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <h3>Returns</h3>
+                        <p>None - prints the summary directly</p>
+
+                        <h3>Example</h3>
+                        <pre class="line-numbers"><code class="language-python">import pandas as pd
+
+# Create a sample DataFrame
+df = pd.DataFrame({
+    'A': [1, 2, None, 4, 5],
+    'B': ['a', 'b', 'c', None, 'e'],
+    'C': [1.1, 2.2, 3.3, 4.4, 5.5]
+})
+
+# Basic usage
+df.info()
+
+# Output:
+# &lt;class 'pandas.core.frame.DataFrame'&gt;
+# RangeIndex: 5 entries, 0 to 4
+# Data columns (total 3 columns):
+#  #   Column  Non-Null Count  Dtype  
+# ---  ------  --------------  -----  
+#  0   A       4 non-null      float64
+#  1   B       4 non-null      object 
+#  2   C       5 non-null      float64
+# dtypes: float64(2), object(1)
+# memory usage: 248.0+ bytes
+
+# With specific parameters
+df.info(max_cols=2)</code></pre>
+
+                        <h3>Key Information Provided</h3>
+                        <ul>
+                            <li>DataFrame dimensions (number of rows and columns)</li>
+                            <li>Column names and their data types</li>
+                            <li>Number of non-null values in each column</li>
+                            <li>Memory usage of the DataFrame</li>
+                            <li>Index type and range</li>
+                        </ul>
+
+                        <h3>Common Use Cases</h3>
+                        <ul>
+                            <li>Initial data exploration to understand dataset structure</li>
+                            <li>Identifying missing values (comparing non-null counts)</li>
+                            <li>Checking data types of columns</li>
+                            <li>Assessing memory usage for large datasets</li>
+                            <li>Verifying data loading and transformations</li>
+                        </ul>
+
+                        <h3>Best Practices</h3>
+                        <ul>
+                            <li>Always check info() after loading a new dataset</li>
+                            <li>Use it to verify data types before operations</li>
+                            <li>Monitor memory usage for large datasets</li>
+                            <li>Compare non-null counts to identify potential data quality issues</li>
+                        </ul>
+
+                        <h3>Related Functions</h3>
+                        <ul>
+                            <li><code>DataFrame.describe()</code> - Statistical summary of numerical columns</li>
+                            <li><code>DataFrame.dtypes</code> - Series with the data type of each column</li>
+                            <li><code>DataFrame.memory_usage()</code> - Memory usage of each column</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="df-describe" class="function-detail">
+                    <h2>DataFrame.describe()</h2>
+                    <div class="function-info">
+                        <h3>Description</h3>
+                        <p>Generate descriptive statistics that summarize the central tendency, dispersion, and shape of a dataset's distribution, excluding NaN values. By default, it analyzes only numeric columns, but it can be configured to include other data types.</p>
+                        
+                        <h3>Parameters</h3>
+                        <ul>
+                            <li><code>include</code>: 'all' or list-like of dtypes
+                                <ul>
+                                    <li>Default: None (numeric columns only)</li>
+                                    <li>'all': Include all columns</li>
+                                    <li>Can specify: ['number'], ['object'], ['category'], etc.</li>
+                                </ul>
+                            </li>
+                            <li><code>exclude</code>: list-like of dtypes
+                                <ul>
+                                    <li>Default: None</li>
+                                    <li>Dtypes to omit from the result</li>
+                                </ul>
+                            </li>
+                            <li><code>percentiles</code>: list-like of numbers
+                                <ul>
+                                    <li>Default: [.25, .5, .75]</li>
+                                    <li>The percentiles to include in the output</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <h3>Returns</h3>
+                        <p>DataFrame with descriptive statistics:</p>
+                        <ul>
+                            <li>For numeric data: count, mean, std, min, 25%, 50%, 75%, max</li>
+                            <li>For object data: count, unique, top, freq</li>
+                            <li>For datetime data: count, unique, top, freq, first, last</li>
+                        </ul>
+
+                        <h3>Example</h3>
+                        <pre class="line-numbers"><code class="language-python">import pandas as pd
+import numpy as np
+
+# Create a sample DataFrame with different types of data
+df = pd.DataFrame({
+    'numeric': [1, 2, 3, 4, 5],
+    'text': ['a', 'b', 'a', 'c', 'b'],
+    'mixed': [10, 20, None, 40, 50],
+    'dates': pd.date_range('2023-01-01', periods=5)
+})
+
+# Basic usage (numeric columns only)
+print("Basic numeric description:")
+print(df.describe()) #same as df.describe(include=['number'])
+
+# Include object columns
+print("\nObject columns description:")
+print(df.describe(include=['object']))
+
+# Include all columns
+print("\nAll columns description:")
+print(df.describe(include='all'))
+
+# Custom percentiles
+print("\nCustom percentiles:")
+print(df.describe(percentiles=[.05, .25, .75, .95]))
+
+# Output for numeric description:
+#        numeric      mixed
+# count    5.00       4.00
+# mean     3.00      30.00
+# std      1.58      17.32
+# min      1.00      10.00
+# 25%      2.00      17.50
+# 50%      3.00      30.00
+# 75%      4.00      42.50
+# max      5.00      50.00</code></pre>
+
+                        <h3>Key Features</h3>
+                        <ul>
+                            <li>Automatic handling of different data types</li>
+                            <li>Configurable percentile calculations</li>
+                            <li>NaN handling and exclusion</li>
+                            <li>Support for categorical and datetime data</li>
+                            <li>Customizable column selection</li>
+                        </ul>
+
+                        <h3>Common Use Cases</h3>
+                        <ul>
+                            <li>Initial statistical analysis of datasets</li>
+                            <li>Identifying data distribution patterns</li>
+                            <li>Detecting outliers through min/max values</li>
+                            <li>Understanding data spread and central tendency</li>
+                            <li>Quick summary of categorical variable frequencies</li>
+                        </ul>
+
+                        <h3>Best Practices</h3>
+                        <ul>
+                            <li>Always check for data types before describing</li>
+                            <li>Consider custom percentiles for specific analysis needs</li>
+                            <li>Use in conjunction with visualization tools</li>
+                            <li>Be aware of NaN values impact on statistics</li>
+                            <li>Combine with .info() for complete data understanding</li>
+                        </ul>
+
+                        <h3>Related Functions</h3>
+                        <ul>
+                            <li><code>DataFrame.info()</code> - Structure and data type summary</li>
+                            <li><code>DataFrame.value_counts()</code> - Frequency of unique values</li>
+                            <li><code>DataFrame.agg()</code> - Custom aggregate statistics</li>
+                            <li><code>DataFrame.nunique()</code> - Count of unique values</li>
+                        </ul>
+                    </div>
+                </div>
+
                 <div class="function-detail hidden">
                     <p>Select a function from the sidebar to view its details.</p>
                 </div>
@@ -139,6 +331,10 @@ df = pd.read_csv('data.csv',
         <p>Created with ❤️ for the Data Science and Machine Learning community</p>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-python.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html> 

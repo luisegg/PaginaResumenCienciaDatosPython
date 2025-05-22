@@ -592,4 +592,93 @@ footer {
     .content-panel {
         padding: 1.5rem;
     }
+}
+
+/* Code block styling */
+pre[class*="language-"] {
+    border-radius: 6px;
+    margin: 1.5em 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 1.5em;
+    overflow: auto;
+    background: #272822;
+    font-family: 'Fira Code', 'Consolas', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Base token colors */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+    color: #8e908c !important;
+    font-style: italic !important;
+}
+
+.token.function {
+    color: #66d9ef !important;
+}
+
+.token.keyword {
+    color: #f92672 !important;
+}
+
+.token.string {
+    color: #a6e22e !important;
+}
+
+.token.number {
+    color: #ae81ff !important;
+}
+
+.token.boolean,
+.token.constant {
+    color: #ae81ff !important;
+}
+
+.token.operator {
+    color: #f92672 !important;
+}
+
+.token.punctuation {
+    color: #fff !important;
+}
+
+.token.parameter {
+    color: #fd971f !important;
+}
+
+/* Selection styling */
+pre[class*="language-"] *::selection {
+    background-color: rgba(174, 129, 255, 0.2) !important;
+}
+
+pre[class*="language-"] *::-moz-selection {
+    background-color: rgba(174, 129, 255, 0.2) !important;
+}
+
+/* Line numbers styling */
+.line-numbers .line-numbers-rows {
+    border-right: 1px solid #404040;
+}
+
+.line-numbers-rows > span:before {
+    color: #636363;
+}
+
+code[class*="language-"] {
+    text-shadow: none;
+    color: #f8f8f2;
+}
+
+/* Output styling */
+pre[class*="language-"] .output {
+    color: #75715e !important;
+    font-style: italic !important;
+}
+
+/* Improve spacing around code blocks */
+.function-info pre[class*="language-"] {
+    margin: 1em 0;
 } 

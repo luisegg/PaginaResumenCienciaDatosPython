@@ -108,14 +108,3 @@ document.head.insertAdjacentHTML('beforeend', `
         }
     </style>
 `);
-
-// Resaltar el código cuando se hace hover sobre él
-document.querySelectorAll('code').forEach(code => {
-    code.addEventListener('mouseenter', function() {
-        this.style.backgroundColor = '#e2e8f0';
-    });
-    
-    code.addEventListener('mouseleave', function() {
-        this.style.backgroundColor = '#f1f5f9';
-    });
-}); 
