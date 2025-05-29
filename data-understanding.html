@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Understanding - CRISP-ML(Q)</title>
+    <title>Data Understanding/EDA - CRISP-ML(Q)</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css" rel="stylesheet" />
@@ -20,7 +20,7 @@
             </ul>
         </nav>
         <div class="hero">
-            <h1>Data Understanding Phase</h1>
+            <h1>Data Understanding/EDA Phase</h1>
             <p>Comprehensive guide to libraries and functions for data exploration and analysis</p>
         </div>
     </header>
@@ -29,7 +29,7 @@
         <div class="container">
             <a href="index.html">Home</a> > 
             <a href="index.html#phases">Phases</a> > 
-            <span>Data Understanding</span>
+            <span>Data Understanding/EDA</span>
         </div>
     </nav>
 
@@ -50,8 +50,76 @@
                             <li><a href="#df-info" class="function-link">DataFrame.info()</a></li>
                             <li><a href="#df-describe" class="function-link">DataFrame.describe()</a></li>
                             <li><a href="#df-shape" class="function-link">DataFrame.shape</a></li>
+                            <li><a href="#df-columns" class="function-link">DataFrame.columns</a></li>
+                            <li><a href="#df-dtypes" class="function-link">DataFrame.dtypes</a></li>
+                            <li><a href="#df-head" class="function-link">DataFrame.head()</a></li>
+                            <li><a href="#df-slicing" class="function-link">DataFrame slicing</a></li>
+                            <li><a href="#df-nunique" class="function-link">DataFrame.nunique()</a></li>
+                            <li><a href="#df-drop-duplicates" class="function-link">DataFrame['col_name'].drop_duplicates()</a></li>
+                            <li><a href="#df-sort-values" class="function-link">DataFrame.sort_values('col_name')</a></li>
+                            <li><a href="#df-col-unique" class="function-link">DataFrame['col_name'].unique()</a></li>
+                            <li><a href="#df-col-value-counts" class="function-link">DataFrame['col_name'].value_counts()</a></li>
+                            <li><a href="#df-isna" class="function-link">DataFrame.isna()</a></li>
+                            <li><a href="#df-isna-sum" class="function-link">DataFrame.isna().sum()</a></li>
+                            <li><a href="#df-count" class="function-link">DataFrame.count()</a></li>
+                            <li><a href="#df-groupby" class="function-link">DataFrame.groupby()</a></li>
+                            <li><a href="#df-hist" class="function-link">DataFrame.hist()</a></li>
+                            <li><a href="#df-hist" class="function-link">DataFrame['col_name'].plot.hist()</a></li>
+                            
                         </ul>
                     </div>
+
+                    <div class="sidebar-group">
+                        <h4>Data Access</h4>
+                        <ul>
+                            <li><a href="#df-iloc" class="function-link">DataFrame.iloc()</a></li>
+                            <li><a href="#df-loc" class="function-link">DataFrame.loc()</a></li>
+                        </ul>
+                    </div>     
+
+                    <div class="sidebar-group">
+                        <h4>Data Frame Altering</h4>
+                        <ul>
+                            <li><a href="#df-concat" class="function-link">DataFrame.concat()</a></li>
+                            <li><a href="#df-drop" class="function-link">DataFrame.drop()</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-group">
+                        <h4>Data Frame Joining</h4>
+                        <ul>
+                            <li><a href="#df-join" class="function-link">DataFrame.join()</a></li>
+                            <li><a href="#df-merge" class="function-link">DataFrame.merge()</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-group">
+                        <h4>Data Frame Displaying</h4>
+                        <ul>
+                            <li><a href="#df-pivot" class="function-link">DataFrame.pivot()</a></li>
+                            <li><a href="#df-melt" class="function-link">DataFrame.melt()</a></li>
+                            <li><a href="#df-stack" class="function-link">DataFrame.stack()</a></li>
+                            <li><a href="#df-unstack" class="function-link">DataFrame.unstack()</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-group">
+                        <h4>Data Frame Indexing</h4>
+                        <ul>
+                            <li><a href="#df-index" class="function-link">DataFrame.index</a></li>
+                            <li><a href="#df-set-index" class="function-link">DataFrame.set_index('col_name')</a></li>
+                            <li><a href="#df-reset-index" class="function-link">DataFrame.reset_index()</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-group">
+                        <h4>SQL</h4>
+                        <ul>
+                            <li><a href="#df-read-sql" class="function-link">DataFrame.read_sql()</a></li>
+                        </ul>
+                    </div>
+
+                   
                 </div>
 
                 <div class="sidebar-section">
@@ -316,6 +384,2050 @@ print(df.describe(percentiles=[.05, .25, .75, .95]))
                             <li><code>DataFrame.value_counts()</code> - Frequency of unique values</li>
                             <li><code>DataFrame.agg()</code> - Custom aggregate statistics</li>
                             <li><code>DataFrame.nunique()</code> - Count of unique values</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="df-shape" class="function-detail">
+                    <h2>DataFrame.shape</h2>
+                    <div class="function-info">
+                        <h3>Description</h3>
+                        <p>Return a tuple representing the dimensionality of the DataFrame. The tuple contains (n_rows, n_columns). This attribute is particularly useful for quickly understanding the size of your dataset.</p>
+                        
+                        <h3>Returns</h3>
+                        <p>tuple: A tuple containing the number of rows and columns in the DataFrame.</p>
+
+                        <h3>Example</h3>
+                        <pre class="line-numbers"><code class="language-python">import pandas as pd
+
+# Create a sample DataFrame
+df = pd.DataFrame({
+    'A': [1, 2, 3, 4, 5],
+    'B': ['a', 'b', 'c', 'd', 'e'],
+    'C': [1.1, 2.2, 3.3, 4.4, 5.5]
+})
+
+# Get the shape
+rows, cols = df.shape
+print(f"DataFrame has {rows} rows and {cols} columns")
+
+# Output:
+# DataFrame has 5 rows and 3 columns</code></pre>
+
+                        <h3>Common Use Cases</h3>
+                        <ul>
+                            <li>Quick verification of dataset dimensions</li>
+                            <li>Checking if data loading was successful</li>
+                            <li>Validating data transformations</li>
+                            <li>Debugging data processing pipelines</li>
+                            <li>Input validation for machine learning models</li>
+                        </ul>
+
+                        <h3>Best Practices</h3>
+                        <ul>
+                            <li>Use shape to verify data loading and transformations</li>
+                            <li>Check shape before and after operations that modify the DataFrame</li>
+                            <li>Combine with other attributes like info() for complete understanding</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="df-columns" class="function-detail">
+                    <h2>DataFrame.columns</h2>
+                    <div class="function-info">
+                        <h3>Description</h3>
+                        <p>The column labels of the DataFrame. Returns an Index object representing the columns. This attribute is essential for understanding and manipulating the structure of your DataFrame.</p>
+                        
+                        <h3>Returns</h3>
+                        <p>Index: The column labels of the DataFrame.</p>
+
+                        <h3>Example</h3>
+                        <pre class="line-numbers"><code class="language-python">import pandas as pd
+
+# Create a sample DataFrame
+df = pd.DataFrame({
+    'A': [1, 2, 3],
+    'B': ['x', 'y', 'z'],
+    'C': [True, False, True]
+})
+
+# Get column names
+print("Column names:", df.columns)
+
+# Check if a column exists
+print("Is 'A' a column?", 'A' in df.columns)
+
+# Get column names as list
+column_list = df.columns.tolist()
+print("Columns as list:", column_list)
+
+# Rename columns
+df.columns = ['col1', 'col2', 'col3']
+print("New column names:", df.columns)</code></pre>
+
+                        <h3>Common Use Cases</h3>
+                        <ul>
+                            <li>Accessing and modifying column names</li>
+                            <li>Checking for column existence</li>
+                            <li>Column selection and filtering</li>
+                            <li>Feature selection in machine learning</li>
+                            <li>Data validation and cleaning</li>
+                        </ul>
+
+                        <h3>Best Practices</h3>
+                        <ul>
+                            <li>Use meaningful and consistent column names</li>
+                            <li>Avoid spaces and special characters in column names</li>
+                            <li>Keep track of column names after transformations</li>
+                            <li>Document column name changes</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="df-index" class="function-detail">
+                    <h2>DataFrame.index</h2>
+                    <div class="function-info">
+                        <h3>Description</h3>
+                        <p>The index (row labels) of the DataFrame. Returns an Index object that provides labels for the DataFrame's rows. The index is a fundamental component that enables powerful data alignment and selection capabilities.</p>
+                        
+                        <h3>Returns</h3>
+                        <p>Index: The row labels of the DataFrame.</p>
+
+                        <h3>Example</h3>
+                        <pre class="line-numbers"><code class="language-python">import pandas as pd
+
+# Create a DataFrame with custom index
+df = pd.DataFrame({
+    'A': [1, 2, 3],
+    'B': ['x', 'y', 'z']
+}, index=['row1', 'row2', 'row3'])
+
+# Display index
+print("Index:", df.index)
+
+# Check if a label exists in index
+print("Is 'row1' in index?", 'row1' in df.index)
+
+# Convert index to list
+index_list = df.index.tolist()
+print("Index as list:", index_list)
+
+# Reset index
+df_reset = df.reset_index()
+print("\nAfter reset_index():")
+print(df_reset)</code></pre>
+
+                        <h3>Common Use Cases</h3>
+                        <ul>
+                            <li>Time series data with datetime index</li>
+                            <li>Multi-level indexing for hierarchical data</li>
+                            <li>Row selection and filtering</li>
+                            <li>Data alignment in operations</li>
+                            <li>Index-based operations and joins</li>
+                        </ul>
+
+                        <h3>Best Practices</h3>
+                        <ul>
+                            <li>Use meaningful index labels when appropriate</li>
+                            <li>Consider reset_index() when index is no longer needed</li>
+                            <li>Ensure index uniqueness when required</li>
+                            <li>Document index structure for complex hierarchical indexes</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="df-dtypes" class="function-detail">
+                    <h2>DataFrame.dtypes</h2>
+                    <div class="function-info">
+                        <h3>Description</h3>
+                        <p>Return the data types of each column in the DataFrame. This attribute returns a Series with the data type of each column, which is crucial for understanding how data is stored and handled in the DataFrame.</p>
+                        
+                        <h3>Returns</h3>
+                        <p>Series: The data type of each column.</p>
+
+                        <h3>Example</h3>
+                        <pre class="line-numbers"><code class="language-python">import pandas as pd
+import numpy as np
+
+# Create a DataFrame with various data types
+df = pd.DataFrame({
+    'integer': [1, 2, 3],
+    'float': [1.1, 2.2, 3.3],
+    'string': ['a', 'b', 'c'],
+    'boolean': [True, False, True],
+    'datetime': pd.date_range('2023-01-01', periods=3),
+    'category': pd.Categorical(['x', 'y', 'z'])
+})
+
+# Display data types
+print("Data types of all columns:")
+print(df.dtypes)
+
+# Check type of specific column
+print("\nType of 'integer' column:", df['integer'].dtype)
+
+# Convert data types
+df['integer'] = df['integer'].astype('float64')
+print("\nAfter conversion:")
+print(df.dtypes)</code></pre>
+
+                        <h3>Common Data Types</h3>
+                        <ul>
+                            <li>int64: Integer numbers</li>
+                            <li>float64: Floating-point numbers</li>
+                            <li>object: Strings or mixed types</li>
+                            <li>bool: Boolean values</li>
+                            <li>datetime64: Date and time values</li>
+                            <li>category: Categorical data</li>
+                        </ul>
+
+                        <h3>Common Use Cases</h3>
+                        <ul>
+                            <li>Verifying data types after loading</li>
+                            <li>Debugging type-related issues</li>
+                            <li>Memory optimization</li>
+                            <li>Data type conversion planning</li>
+                            <li>Input validation for operations</li>
+                        </ul>
+
+                        <h3>Best Practices</h3>
+                        <ul>
+                            <li>Check dtypes after loading data</li>
+                            <li>Use appropriate types for memory efficiency</li>
+                            <li>Convert types explicitly when needed</li>
+                            <li>Document expected data types</li>
+                            <li>Consider using categories for string columns with few unique values</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="df-head" class="function-detail">
+                    <h2>DataFrame.head()</h2>
+                    <div class="function-info">
+                        <h3>Description</h3>
+                        <p>Return the first n rows of the DataFrame. This function is essential for quickly inspecting the beginning of your dataset without loading all rows into memory or display.</p>
+                        
+                        <h3>Parameters</h3>
+                        <ul>
+                            <li><code>n</code>: int, default 5
+                                <ul>
+                                    <li>Number of rows to return</li>
+                                    <li>If negative, returns all rows except the last |n| rows</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <h3>Example</h3>
+                        <pre class="line-numbers"><code class="language-python">import pandas as pd
+
+# Create a sample DataFrame
+df = pd.DataFrame({
+    'A': range(1, 101),
+    'B': ['data_' + str(i) for i in range(1, 101)],
+    'C': pd.date_range('2023-01-01', periods=100)
+})
+
+# Display first 5 rows (default)
+print("First 5 rows:")
+print(df.head())
+
+# Display first 10 rows
+print("\nFirst 10 rows:")
+print(df.head(10))
+
+# Display all rows except last 3
+print("\nAll rows except last 3:")
+print(df.head(-3))</code></pre>
+
+                        <h3>Common Use Cases</h3>
+                        <ul>
+                            <li>Quick data inspection after loading</li>
+                            <li>Verifying data structure and format</li>
+                            <li>Debugging data transformations</li>
+                            <li>Creating sample outputs</li>
+                        </ul>
+
+                        <h3>Best Practices</h3>
+                        <ul>
+                            <li>Use head() for initial data exploration</li>
+                            <li>Combine with tail() for complete overview</li>
+                            <li>Adjust n based on data complexity</li>
+                            <li>Use with display options for better visualization</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="df-set-index" class="function-detail">
+                    <h2>DataFrame.set_index('col_name')</h2>
+                    <div class="function-info">
+                        <h3>Description</h3>
+                        <p>Set the DataFrame index using existing columns. This function allows you to use one or more columns as the index of the DataFrame, which is particularly useful for data alignment and hierarchical indexing.</p>
+                        
+                        <h3>Parameters</h3>
+                        <ul>
+                            <li><code>keys</code>: str or list of str
+                                <ul>
+                                    <li>Column name(s) to be set as index</li>
+                                </ul>
+                            </li>
+                            <li><code>drop</code>: bool, default True
+                                <ul>
+                                    <li>Delete columns to be used as index</li>
+                                </ul>
+                            </li>
+                            <li><code>inplace</code>: bool, default False
+                                <ul>
+                                    <li>Modify the DataFrame in place</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <h3>Example</h3>
+                        <pre class="line-numbers"><code class="language-python">import pandas as pd
+
+# Create a sample DataFrame
+df = pd.DataFrame({
+    'ID': ['A1', 'A2', 'A3'],
+    'Date': ['2023-01-01', '2023-01-02', '2023-01-03'],
+    'Value': [100, 200, 300]
+})
+
+# Set single column as index
+df_single = df.set_index('ID')
+print("Single index:")
+print(df_single)
+
+# Set multiple columns as index
+df_multi = df.set_index(['ID', 'Date'])
+print("\nMulti-index:")
+print(df_multi)
+
+# Set index without dropping the column
+df_keep = df.set_index('ID', drop=False)
+print("\nKeep index column:")
+print(df_keep)</code></pre>
+
+                        <h3>Common Use Cases</h3>
+                        <ul>
+                            <li>Creating time series data with date index</li>
+                            <li>Setting up hierarchical/multi-level indexes</li>
+                            <li>Preparing data for joining/merging</li>
+                            <li>Organizing data for easier access</li>
+                        </ul>
+
+                        <h3>Best Practices</h3>
+                        <ul>
+                            <li>Choose meaningful index columns</li>
+                            <li>Consider using multiple columns for hierarchical data</li>
+                            <li>Keep original columns if needed for later use</li>
+                            <li>Verify index uniqueness when required</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="df-reset-index" class="function-detail">
+                    <h2>DataFrame.reset_index()</h2>
+                    <div class="function-info">
+                        <h3>Description</h3>
+                        <p>Reset the DataFrame index to default integer index. This function is useful when you want to convert an index back to a column or when you need to reset the index after filtering or transforming data.</p>
+                        
+                        <h3>Parameters</h3>
+                        <ul>
+                            <li><code>drop</code>: bool, default False
+                                <ul>
+                                    <li>Don't include index as column if True</li>
+                                </ul>
+                            </li>
+                            <li><code>inplace</code>: bool, default False
+                                <ul>
+                                    <li>Modify the DataFrame in place</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <h3>Example</h3>
+                        <pre class="line-numbers"><code class="language-python">import pandas as pd
+
+# Create a DataFrame with custom index
+df = pd.DataFrame({
+    'Value': [100, 200, 300]
+}, index=['A', 'B', 'C'])
+
+# Reset index (keeping old index as column)
+df_reset = df.reset_index()
+print("Reset index (keep):")
+print(df_reset)
+
+# Reset index (dropping old index)
+df_drop = df.reset_index(drop=True)
+print("\nReset index (drop):")
+print(df_drop)
+
+# Reset index in-place
+df.reset_index(inplace=True)
+print("\nReset index (in-place):")
+print(df)</code></pre>
+
+                        <h3>Common Use Cases</h3>
+                        <ul>
+                            <li>Converting index to regular column</li>
+                            <li>Cleaning up after filtering operations</li>
+                            <li>Preparing data for export</li>
+                            <li>Fixing non-unique indexes</li>
+                        </ul>
+
+                        <h3>Best Practices</h3>
+                        <ul>
+                            <li>Consider whether to keep or drop the old index</li>
+                            <li>Use inplace=True carefully</li>
+                            <li>Reset index after major filtering operations</li>
+                            <li>Document index changes in your code</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="df-nunique" class="function-detail">
+                    <h2>DataFrame.nunique()</h2>
+                    <div class="function-info">
+                        <h3>Description</h3>
+                        <p>Count the number of unique values in each column of the DataFrame. This method is particularly useful for understanding the cardinality of your data and identifying potential categorical columns.</p>
+                        
+                        <h3>Parameters</h3>
+                        <ul>
+                            <li><code>axis</code>: {0 or 'index', 1 or 'columns'}, default 0
+                                <ul>
+                                    <li>0 or 'index': count unique values in each column</li>
+                                    <li>1 or 'columns': count unique values in each row</li>
+                                </ul>
+                            </li>
+                            <li><code>dropna</code>: bool, default True
+                                <ul>
+                                    <li>Don't include NaN values in the count</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <h3>Example</h3>
+                        <pre class="line-numbers"><code class="language-python">import pandas as pd
+import numpy as np
+
+# Create a sample DataFrame
+df = pd.DataFrame({
+    'Category': ['A', 'B', 'A', 'C', 'B'],
+    'Status': ['Active', 'Active', 'Inactive', 'Active', None],
+    'Value': [1, 2, 1, 3, 2]
+})
+
+# Count unique values in each column
+print("Unique values per column:")
+print(df.nunique())
+
+# Count including NaN values
+print("\nUnique values (including NaN):")
+print(df.nunique(dropna=False))
+
+# Count unique values in each row
+print("\nUnique values per row:")
+print(df.nunique(axis=1))</code></pre>
+
+                        <h3>Common Use Cases</h3>
+                        <ul>
+                            <li>Identifying categorical columns</li>
+                            <li>Data quality assessment</li>
+                            <li>Feature engineering decisions</li>
+                            <li>Memory optimization planning</li>
+                        </ul>
+
+                        <h3>Best Practices</h3>
+                        <ul>
+                            <li>Consider NaN handling strategy</li>
+                            <li>Use in combination with value_counts() for details</li>
+                            <li>Check cardinality before encoding categoricals</li>
+                            <li>Monitor unique values for data drift</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="df-drop-duplicates" class="function-detail">
+                    <h2>DataFrame['col_name'].drop_duplicates()</h2>
+                    <div class="function-info">
+                        <h3>Description</h3>
+                        <p>Remove duplicate values from a Series or DataFrame. This method returns a new object with duplicate values removed, keeping either the first or last occurrence of each value based on parameters.</p>
+                        
+                        <h3>Parameters</h3>
+                        <ul>
+                            <li><code>subset</code>: column label or sequence of labels, optional
+                                <ul>
+                                    <li>Only consider certain columns for identifying duplicates</li>
+                                </ul>
+                            </li>
+                            <li><code>keep</code>: {'first', 'last', False}, default 'first'
+                                <ul>
+                                    <li>first: Drop duplicates except for the first occurrence</li>
+                                    <li>last: Drop duplicates except for the last occurrence</li>
+                                    <li>False: Drop all duplicates</li>
+                                </ul>
+                            </li>
+                            <li><code>inplace</code>: bool, default False
+                                <ul>
+                                    <li>Whether to modify the DataFrame in place</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <h3>Example</h3>
+                        <pre class="line-numbers"><code class="language-python">import pandas as pd
+
+# Create a sample DataFrame with duplicates
+df = pd.DataFrame({
+    'A': [1, 1, 2, 2, 3],
+    'B': ['a', 'a', 'b', 'c', 'c'],
+    'C': [100, 100, 200, 300, 300]
+})
+
+# Drop duplicates in a single column
+print("Drop duplicates in column A:")
+print(df['A'].drop_duplicates())
+
+# Drop duplicates based on all columns
+print("\nDrop duplicates across all columns:")
+print(df.drop_duplicates())
+
+# Drop duplicates based on specific columns
+print("\nDrop duplicates based on columns A and B:")
+print(df.drop_duplicates(subset=['A', 'B']))
+
+# Keep last occurrence
+print("\nDrop duplicates keeping last occurrence:")
+print(df.drop_duplicates(keep='last'))
+
+# Drop all duplicates (including first occurrence)
+print("\nDrop all duplicates:")
+print(df.drop_duplicates(keep=False))</code></pre>
+
+                        <h3>Common Use Cases</h3>
+                        <ul>
+                            <li>Removing duplicate records</li>
+                            <li>Data cleaning</li>
+                            <li>Finding unique combinations</li>
+                            <li>Deduplicating time series data</li>
+                        </ul>
+
+                        <h3>Best Practices</h3>
+                        <ul>
+                            <li>Consider which columns define uniqueness</li>
+                            <li>Choose appropriate keep strategy</li>
+                            <li>Verify results after deduplication</li>
+                            <li>Document deduplication logic</li>
+                        </ul>
+
+                        <h3>Key Points</h3>
+                        <ul>
+                            <li>Works on both Series and DataFrame</li>
+                            <li>Can consider multiple columns</li>
+                            <li>Preserves original index unless reset</li>
+                            <li>NaN values are considered duplicates</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="df-sort-values" class="function-detail">
+                    <h2>DataFrame.sort_values('col_name')</h2>
+                    <div class="function-info">
+                        <h3>Description</h3>
+                        <p>Sort the DataFrame by the values in one or more columns. This function allows you to arrange your data in ascending or descending order based on specified columns.</p>
+                        
+                        <h3>Parameters</h3>
+                        <ul>
+                            <li><code>by</code>: str or list of str
+                                <ul>
+                                    <li>Column name(s) to sort by</li>
+                                </ul>
+                            </li>
+                            <li><code>ascending</code>: bool or list of bool, default True
+                                <ul>
+                                    <li>Sort ascending vs. descending</li>
+                                </ul>
+                            </li>
+                            <li><code>inplace</code>: bool, default False
+                                <ul>
+                                    <li>Modify the DataFrame in place</li>
+                                </ul>
+                            </li>
+                            <li><code>na_position</code>: {'first', 'last'}, default 'last'
+                                <ul>
+                                    <li>Put NAs at the beginning or end</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <h3>Example</h3>
+                        <pre class="line-numbers"><code class="language-python">import pandas as pd
+
+# Create a sample DataFrame
+df = pd.DataFrame({
+    'Name': ['John', 'Alice', 'Bob'],
+    'Age': [25, 30, 25],
+    'Salary': [50000, 60000, 55000]
+})
+
+# Sort by single column
+print("Sort by Age:")
+print(df.sort_values('Age'))
+
+# Sort by multiple columns
+print("\nSort by Age and Salary:")
+print(df.sort_values(['Age', 'Salary']))
+
+# Sort descending
+print("\nSort by Salary (descending):")
+print(df.sort_values('Salary', ascending=False))
+
+# Mixed ascending/descending
+print("\nSort by Age (ascending) and Salary (descending):")
+print(df.sort_values(['Age', 'Salary'], 
+                    ascending=[True, False]))</code></pre>
+
+                        <h3>Common Use Cases</h3>
+                        <ul>
+                            <li>Organizing data for presentation</li>
+                            <li>Finding highest/lowest values</li>
+                            <li>Preparing data for rank calculations</li>
+                            <li>Creating ordered reports</li>
+                        </ul>
+
+                        <h3>Best Practices</h3>
+                        <ul>
+                            <li>Consider multiple columns for stable sorting</li>
+                            <li>Handle NaN values appropriately</li>
+                            <li>Use inplace=True carefully</li>
+                            <li>Document sorting criteria in code</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="df-col-unique" class="function-detail">
+                    <h2>DataFrame['col_name'].unique()</h2>
+                    <div class="function-info">
+                        <h3>Description</h3>
+                        <p>Return unique values in a Series/column. This method returns a NumPy array of unique values in the order they appeared. It's particularly useful for understanding the distinct values in a column.</p>
+                        
+                        <h3>Returns</h3>
+                        <p>numpy.ndarray: Array of unique values</p>
+
+                        <h3>Example</h3>
+                        <pre class="line-numbers"><code class="language-python">import pandas as pd
+import numpy as np
+
+# Create a sample DataFrame
+df = pd.DataFrame({
+    'Category': ['A', 'B', 'A', 'C', 'B', None],
+    'Status': ['Active', 'Active', 'Inactive', 'Active', 'Active', None]
+})
+
+# Get unique values from a column
+print("Unique categories:")
+print(df['Category'].unique())
+
+# Count unique values
+print("\nNumber of unique categories:")
+print(len(df['Category'].unique()))
+
+# Get unique values and sort them
+print("\nSorted unique categories:")
+print(np.sort(df['Category'].unique()))</code></pre>
+
+                        <h3>Common Use Cases</h3>
+                        <ul>
+                            <li>Identifying distinct categories</li>
+                            <li>Data quality checks</li>
+                            <li>Feature engineering</li>
+                            <li>Creating category mappings</li>
+                        </ul>
+
+                        <h3>Best Practices</h3>
+                        <ul>
+                            <li>Check for NaN values in unique values</li>
+                            <li>Consider sorting for better readability</li>
+                            <li>Use in combination with value_counts()</li>
+                            <li>Monitor cardinality changes</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="df-col-value-counts" class="function-detail">
+                    <h2>DataFrame['col_name'].value_counts()</h2>
+                    <div class="function-info">
+                        <h3>Description</h3>
+                        <p>Return a Series containing counts of unique values in a column. This method provides a frequency table of values in descending order by default.</p>
+                        
+                        <h3>Parameters</h3>
+                        <ul>
+                            <li><code>normalize</code>: bool, default False
+                                <ul>
+                                    <li>Return proportions instead of counts</li>
+                                </ul>
+                            </li>
+                            <li><code>sort</code>: bool, default True
+                                <ul>
+                                    <li>Sort by frequencies</li>
+                                </ul>
+                            </li>
+                            <li><code>ascending</code>: bool, default False
+                                <ul>
+                                    <li>Sort in ascending order</li>
+                                </ul>
+                            </li>
+                            <li><code>dropna</code>: bool, default True
+                                <ul>
+                                    <li>Don't include counts of NaN values</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <h3>Example</h3>
+                        <pre class="line-numbers"><code class="language-python">import pandas as pd
+
+# Create a sample DataFrame
+df = pd.DataFrame({
+    'Category': ['A', 'B', 'A', 'C', 'B', None],
+    'Status': ['Active', 'Active', 'Inactive', 'Active', 'Active', None]
+})
+
+# Get value counts
+print("Category counts:")
+print(df['Category'].value_counts())
+
+# Get proportions
+print("\nCategory proportions:")
+print(df['Category'].value_counts(normalize=True))
+
+# Include NaN values
+print("\nCounts including NaN:")
+print(df['Category'].value_counts(dropna=False))
+
+# Sort in ascending order
+print("\nCounts in ascending order:")
+print(df['Category'].value_counts(ascending=True))</code></pre>
+
+                        <h3>Common Use Cases</h3>
+                        <ul>
+                            <li>Analyzing categorical distributions</li>
+                            <li>Data quality assessment</li>
+                            <li>Identifying imbalanced categories</li>
+                            <li>Creating frequency reports</li>
+                        </ul>
+
+                        <h3>Best Practices</h3>
+                        <ul>
+                            <li>Consider NaN handling strategy</li>
+                            <li>Use normalize for proportional analysis</li>
+                            <li>Combine with plotting for visualization</li>
+                            <li>Monitor distribution changes</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="df-isna" class="function-detail">
+                    <h2>DataFrame.isna()</h2>
+                    <div class="function-info">
+                        <h3>Description</h3>
+                        <p>Detect missing values in the DataFrame. Returns a boolean same-sized object indicating if the values are NA. NA values, such as None or numpy.NaN, get mapped to True values. Everything else gets mapped to False values.</p>
+                        
+                        <h3>Returns</h3>
+                        <p>DataFrame: Boolean DataFrame of the same shape as the original</p>
+
+                        <h3>Example</h3>
+                        <pre class="line-numbers"><code class="language-python">import pandas as pd
+import numpy as np
+
+# Create a sample DataFrame with missing values
+df = pd.DataFrame({
+    'A': [1, np.nan, 3, None],
+    'B': ['a', None, 'c', np.nan],
+    'C': [1.0, 2.0, np.nan, 4.0]
+})
+
+# Check for missing values
+print("Missing value mask:")
+print(df.isna())
+
+# Count missing values per column
+print("\nMissing values per column:")
+print(df.isna().sum())
+
+# Calculate percentage of missing values
+print("\nPercentage of missing values:")
+print(df.isna().mean() * 100)
+
+# Filter rows with any missing values
+print("\nRows with missing values:")
+print(df[df.isna().any(axis=1)])</code></pre>
+
+                        <h3>Common Use Cases</h3>
+                        <ul>
+                            <li>Missing value analysis</li>
+                            <li>Data quality assessment</li>
+                            <li>Filtering incomplete records</li>
+                            <li>Preparing data for cleaning</li>
+                        </ul>
+
+                        <h3>Best Practices</h3>
+                        <ul>
+                            <li>Use in combination with sum() for counts</li>
+                            <li>Consider mean() for percentage analysis</li>
+                            <li>Check missing patterns across columns</li>
+                            <li>Document missing value handling strategy</li>
+                        </ul>
+
+                        <h3>Related Functions</h3>
+                        <ul>
+                            <li><code>notna()</code>: Opposite of isna()</li>
+                            <li><code>fillna()</code>: Fill missing values</li>
+                            <li><code>dropna()</code>: Remove missing values</li>
+                            <li><code>interpolate()</code>: Interpolate missing values</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="df-isna-sum" class="function-detail">
+                    <h2>DataFrame.isna().sum()</h2>
+                    <p>Valores faltantes por columna</p>
+                </div>
+
+                <div id="df-count" class="function-detail">
+                    <h2>DataFrame.count()</h2>
+                    <div class="function-info">
+                        <h3>Description</h3>
+                        <p>Count non-NA/null values along a DataFrame axis. This function provides a count of non-missing values for each column or row in the DataFrame.</p>
+                        
+                        <h3>Parameters</h3>
+                        <ul>
+                            <li><code>axis</code>: {0 or 'index', 1 or 'columns'}, default 0
+                                <ul>
+                                    <li>0 or 'index': count values in each column</li>
+                                    <li>1 or 'columns': count values in each row</li>
+                                </ul>
+                            </li>
+                            <li><code>numeric_only</code>: bool, default False
+                                <ul>
+                                    <li>Include only numeric columns in the count</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <h3>Example</h3>
+                        <pre class="line-numbers"><code class="language-python">import pandas as pd
+import numpy as np
+
+# Create a sample DataFrame with missing values
+df = pd.DataFrame({
+    'A': [1, np.nan, 3, None],
+    'B': ['x', None, 'z', 'w'],
+    'C': [True, False, True, True]
+})
+
+# Count non-null values in each column
+print("Count by column:")
+print(df.count())
+
+# Count non-null values in each row
+print("\nCount by row:")
+print(df.count(axis=1))
+
+# Count only numeric columns
+print("\nCount numeric columns only:")
+print(df.count(numeric_only=True))</code></pre>
+
+                        <h3>Common Use Cases</h3>
+                        <ul>
+                            <li>Data completeness analysis</li>
+                            <li>Missing value assessment</li>
+                            <li>Data quality checks</li>
+                            <li>Validating data transformations</li>
+                        </ul>
+
+                        <h3>Best Practices</h3>
+                        <ul>
+                            <li>Compare with DataFrame shape for completeness check</li>
+                            <li>Use in combination with isna() for full missing data analysis</li>
+                            <li>Consider numeric_only for specific analysis needs</li>
+                            <li>Document count criteria in analysis</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="df-groupby" class="function-detail">
+                    <h2>DataFrame.groupby()</h2>
+                    <div class="function-info">
+                        <h3>Description</h3>
+                        <p>Group DataFrame using a mapper or by a Series of columns. A groupby operation involves some combination of splitting the object, applying a function, and combining the results.</p>
+                        
+                        <h3>Parameters</h3>
+                        <ul>
+                            <li><code>by</code>: str, list of str, or mapping
+                                <ul>
+                                    <li>Column(s) to group by</li>
+                                </ul>
+                            </li>
+                            <li><code>axis</code>: {0 or 'index', 1 or 'columns'}, default 0
+                                <ul>
+                                    <li>Split along rows (0) or columns (1)</li>
+                                </ul>
+                            </li>
+                            <li><code>as_index</code>: bool, default True
+                                <ul>
+                                    <li>Return object with group labels as index</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <h3>Example</h3>
+                        <pre class="line-numbers"><code class="language-python">import pandas as pd
+
+# Create a sample DataFrame
+df = pd.DataFrame({
+    'Category': ['A', 'A', 'B', 'B', 'A'],
+    'SubCat': ['X', 'Y', 'X', 'Y', 'X'],
+    'Value': [1, 2, 3, 4, 5],
+    'Count': [10, 20, 30, 40, 50]
+})
+
+# Simple groupby with one column
+print("Mean by Category:")
+print(df.groupby('Category')['Value'].mean())
+
+# Multiple aggregations
+print("\nMultiple aggregations:")
+print(df.groupby('Category').agg({
+    'Value': 'mean',
+    'Count': 'sum'
+}))
+
+# Multiple groupby columns
+print("\nGroupby multiple columns:")
+print(df.groupby(['Category', 'SubCat']).sum())
+
+# Reset index after groupby
+print("\nReset index after groupby:")
+print(df.groupby('Category', as_index=False).mean())</code></pre>
+
+                        <h3>Common Use Cases</h3>
+                        <ul>
+                            <li>Calculating aggregate statistics</li>
+                            <li>Creating summary reports</li>
+                            <li>Data analysis by categories</li>
+                            <li>Feature engineering in ML</li>
+                        </ul>
+
+                        <h3>Best Practices</h3>
+                        <ul>
+                            <li>Choose appropriate aggregation functions</li>
+                            <li>Consider memory usage for large groups</li>
+                            <li>Use as_index=False for flat output</li>
+                            <li>Document grouping logic clearly</li>
+                        </ul>
+
+                        <h3>Common Aggregation Methods</h3>
+                        <ul>
+                            <li><code>mean()</code>: Calculate mean of group</li>
+                            <li><code>sum()</code>: Sum of group values</li>
+                            <li><code>count()</code>: Count of group items</li>
+                            <li><code>agg()</code>: Custom aggregations</li>
+                            <li><code>transform()</code>: Group-wise transformations</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="df-hist" class="function-detail">
+                    <h2>DataFrame.hist() / DataFrame['col_name'].plot.hist()</h2>
+                    <div class="function-info">
+                        <h3>Description</h3>
+                        <p>Draw histogram of the DataFrame's columns. A histogram is a graphical representation of the distribution of numerical data. These methods provide a quick way to visualize the distribution of data in your DataFrame.</p>
+                        
+                        <h3>Parameters</h3>
+                        <ul>
+                            <li><code>column</code>: str or sequence
+                                <ul>
+                                    <li>Column name(s) to plot</li>
+                                </ul>
+                            </li>
+                            <li><code>by</code>: str or sequence
+                                <ul>
+                                    <li>Column to group by</li>
+                                </ul>
+                            </li>
+                            <li><code>bins</code>: int or sequence, default 10
+                                <ul>
+                                    <li>Number of histogram bins</li>
+                                </ul>
+                            </li>
+                            <li><code>figsize</code>: tuple (width, height)
+                                <ul>
+                                    <li>Figure dimensions</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <h3>Example</h3>
+                        <pre class="line-numbers"><code class="language-python">import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Create a sample DataFrame
+df = pd.DataFrame({
+    'A': np.random.normal(0, 1, 1000),
+    'B': np.random.normal(2, 1.5, 1000),
+    'C': np.random.exponential(2, 1000)
+})
+
+# Plot histogram of all numeric columns
+df.hist(bins=30, figsize=(10, 6))
+plt.tight_layout()
+plt.show()
+
+# Plot histogram of single column
+df['A'].plot.hist(bins=50, alpha=0.5)
+plt.title('Distribution of Column A')
+plt.xlabel('Value')
+plt.ylabel('Frequency')
+plt.show()
+
+# Multiple histograms with different parameters
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4))
+df['B'].plot.hist(ax=ax1, bins=30, color='skyblue')
+df['C'].plot.hist(ax=ax2, bins=30, color='lightgreen')
+ax1.set_title('Distribution of B')
+ax2.set_title('Distribution of C')
+plt.tight_layout()
+plt.show()</code></pre>
+
+                        <h3>Common Use Cases</h3>
+                        <ul>
+                            <li>Visualizing data distributions</li>
+                            <li>Identifying outliers</li>
+                            <li>Checking data normality</li>
+                            <li>Comparing distributions</li>
+                        </ul>
+
+                        <h3>Best Practices</h3>
+                        <ul>
+                            <li>Choose appropriate number of bins</li>
+                            <li>Consider data scale and range</li>
+                            <li>Add proper labels and titles</li>
+                            <li>Use subplots for multiple histograms</li>
+                            <li>Consider density plots for continuous data</li>
+                        </ul>
+
+                        <h3>Customization Options</h3>
+                        <ul>
+                            <li>Color and transparency</li>
+                            <li>Bin width and edges</li>
+                            <li>Grid lines and ticks</li>
+                            <li>Legend and labels</li>
+                            <li>Figure size and layout</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="df-iloc" class="function-detail">
+                    <h2>DataFrame.iloc[]</h2>
+                    <div class="function-info">
+                        <h3>Description</h3>
+                        <p>Purely integer-location based indexing for selection by position. Use .iloc[] to select rows and columns by their integer position. This is particularly useful when you need to access data by position rather than by label.</p>
+                        
+                        <h3>Syntax Options</h3>
+                        <ul>
+                            <li><code>.iloc[row_indexer]</code>: Select rows only</li>
+                            <li><code>.iloc[row_indexer, column_indexer]</code>: Select rows and columns</li>
+                            <li><code>.iloc[row_slice, column_slice]</code>: Select by slicing</li>
+                            <li><code>.iloc[boolean_array]</code>: Select using boolean array</li>
+                        </ul>
+
+                        <h3>Example</h3>
+                        <pre class="line-numbers"><code class="language-python">import pandas as pd
+
+# Create a sample DataFrame
+df = pd.DataFrame({
+    'A': range(1, 6),
+    'B': ['a', 'b', 'c', 'd', 'e'],
+    'C': range(10, 60, 10)
+}, index=['row1', 'row2', 'row3', 'row4', 'row5'])
+
+# Select single value
+print("Single value (row 0, column 1):")
+print(df.iloc[0, 1])
+
+# Select entire row
+print("\nFirst row:")
+print(df.iloc[0])
+
+# Select multiple rows
+print("\nFirst two rows:")
+print(df.iloc[0:2])
+
+# Select specific rows and columns
+print("\nRows 0,2 and columns 1,2:")
+print(df.iloc[[0, 2], [1, 2]])
+
+# Using negative indexing
+print("\nLast two rows, all columns:")
+print(df.iloc[-2:])
+
+# Boolean indexing
+print("\nSelect rows where index is even:")
+print(df.iloc[range(0, len(df), 2)])</code></pre>
+
+                        <h3>Common Use Cases</h3>
+                        <ul>
+                            <li>Accessing data by position</li>
+                            <li>Slicing data frames</li>
+                            <li>Extracting specific rows/columns</li>
+                            <li>Working with numeric indices</li>
+                        </ul>
+
+                        <h3>Best Practices</h3>
+                        <ul>
+                            <li>Use for position-based access</li>
+                            <li>Verify index ranges before slicing</li>
+                            <li>Consider using loc[] for label-based access</li>
+                            <li>Handle index errors appropriately</li>
+                        </ul>
+
+                        <h3>Key Points</h3>
+                        <ul>
+                            <li>Integer-based only</li>
+                            <li>0-based indexing</li>
+                            <li>Supports negative indexing</li>
+                            <li>Allows boolean arrays</li>
+                            <li>Raises IndexError for invalid indices</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="df-loc" class="function-detail">
+                    <h2>DataFrame.loc[]</h2>
+                    <div class="function-info">
+                        <h3>Description</h3>
+                        <p>Access a group of rows and columns by label(s) or a boolean array. .loc[] is primarily label based, but may also be used with a boolean array. This is the preferred method for label-based indexing.</p>
+                        
+                        <h3>Syntax Options</h3>
+                        <ul>
+                            <li><code>.loc[row_indexer]</code>: Select rows by label</li>
+                            <li><code>.loc[row_indexer, column_indexer]</code>: Select rows and columns by label</li>
+                            <li><code>.loc[boolean_series]</code>: Select using boolean condition</li>
+                            <li><code>.loc[row_slice, column_slice]</code>: Select by label slicing</li>
+                        </ul>
+
+                        <h3>Example</h3>
+                        <pre class="line-numbers"><code class="language-python">import pandas as pd
+
+# Create a sample DataFrame
+df = pd.DataFrame({
+    'Name': ['John', 'Alice', 'Bob', 'Carol'],
+    'Age': [25, 30, 35, 40],
+    'City': ['NY', 'SF', 'LA', 'CHI']
+}, index=['P1', 'P2', 'P3', 'P4'])
+
+# Select by label
+print("Select row 'P2':")
+print(df.loc['P2'])
+
+# Select multiple columns for specific rows
+print("\nNames and Ages for P1 and P3:")
+print(df.loc[['P1', 'P3'], ['Name', 'Age']])
+
+# Boolean indexing
+print("\nPeople over 30:")
+print(df.loc[df['Age'] > 30])
+
+# Slicing with labels
+print("\nP2 to P3, all columns:")
+print(df.loc['P2':'P3'])
+
+# Combining conditions
+print("\nPeople over 30 in NY or LA:")
+print(df.loc[(df['Age'] > 30) & 
+             (df['City'].isin(['NY', 'LA']))])</code></pre>
+
+                        <h3>Common Use Cases</h3>
+                        <ul>
+                            <li>Label-based data access</li>
+                            <li>Conditional filtering</li>
+                            <li>Multi-index selection</li>
+                            <li>Boolean indexing</li>
+                        </ul>
+
+                        <h3>Best Practices</h3>
+                        <ul>
+                            <li>Use for label-based access</li>
+                            <li>Verify label existence</li>
+                            <li>Handle missing labels appropriately</li>
+                            <li>Use iloc[] for integer-based indexing</li>
+                        </ul>
+
+                        <h3>Key Points</h3>
+                        <ul>
+                            <li>Label-based access</li>
+                            <li>Inclusive slicing</li>
+                            <li>Supports boolean indexing</li>
+                            <li>Works with multi-index</li>
+                            <li>Raises KeyError for missing labels</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="df-concat" class="function-detail">
+                    <h2>DataFrame.concat()</h2>
+                    <div class="function-info">
+                        <h3>Description</h3>
+                        <p>Concatenate pandas objects along a particular axis. This function allows you to combine multiple DataFrame or Series objects either vertically (stacking) or horizontally (joining side-by-side).</p>
+                        
+                        <h3>Parameters</h3>
+                        <ul>
+                            <li><code>objs</code>: list or dict of pandas objects
+                                <ul>
+                                    <li>The pandas objects to concatenate</li>
+                                </ul>
+                            </li>
+                            <li><code>axis</code>: {0/'index', 1/'columns'}, default 0
+                                <ul>
+                                    <li>The axis to concatenate along</li>
+                                </ul>
+                            </li>
+                            <li><code>join</code>: {'inner', 'outer'}, default 'outer'
+                                <ul>
+                                    <li>How to handle indexes on other axis</li>
+                                </ul>
+                            </li>
+                            <li><code>ignore_index</code>: bool, default False
+                                <ul>
+                                    <li>If True, do not use the index values</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <h3>Example</h3>
+                        <pre class="line-numbers"><code class="language-python">import pandas as pd
+
+# Create sample DataFrames
+df1 = pd.DataFrame({
+    'A': ['A0', 'A1'],
+    'B': ['B0', 'B1']
+})
+
+df2 = pd.DataFrame({
+    'A': ['A2', 'A3'],
+    'B': ['B2', 'B3']
+})
+
+df3 = pd.DataFrame({
+    'C': ['C0', 'C1'],
+    'D': ['D0', 'D1']
+})
+
+# Vertical concatenation (stacking)
+print("Vertical concatenation:")
+print(pd.concat([df1, df2]))
+
+# Horizontal concatenation
+print("\nHorizontal concatenation:")
+print(pd.concat([df1, df3], axis=1))
+
+# Concatenate with index reset
+print("\nConcatenate with reset index:")
+print(pd.concat([df1, df2], ignore_index=True))
+
+# Inner join concatenation
+print("\nInner join concatenation:")
+print(pd.concat([df1, df3], axis=1, join='inner'))</code></pre>
+
+                        <h3>Common Use Cases</h3>
+                        <ul>
+                            <li>Combining multiple datasets</li>
+                            <li>Appending new data to existing DataFrame</li>
+                            <li>Merging split datasets</li>
+                            <li>Creating panel data</li>
+                        </ul>
+
+                        <h3>Best Practices</h3>
+                        <ul>
+                            <li>Verify column consistency</li>
+                            <li>Consider index handling</li>
+                            <li>Choose appropriate join type</li>
+                            <li>Handle missing values after concatenation</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="df-drop" class="function-detail">
+                    <h2>DataFrame.drop()</h2>
+                    <div class="function-info">
+                        <h3>Description</h3>
+                        <p>Drop specified labels from rows or columns. Remove rows or columns by specifying label names and corresponding axis, or directly by index or column labels.</p>
+                        
+                        <h3>Parameters</h3>
+                        <ul>
+                            <li><code>labels</code>: single label or list-like
+                                <ul>
+                                    <li>Index or column labels to drop</li>
+                                </ul>
+                            </li>
+                            <li><code>axis</code>: {0 or 'index', 1 or 'columns'}, default 0
+                                <ul>
+                                    <li>Whether to drop labels from index (0) or columns (1)</li>
+                                </ul>
+                            </li>
+                            <li><code>inplace</code>: bool, default False
+                                <ul>
+                                    <li>If True, do operation inplace</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <h3>Example</h3>
+                        <pre class="line-numbers"><code class="language-python">import pandas as pd
+
+# Create a sample DataFrame
+df = pd.DataFrame({
+    'A': [1, 2, 3],
+    'B': ['a', 'b', 'c'],
+    'C': [True, False, True],
+    'D': [10, 20, 30]
+}, index=['row1', 'row2', 'row3'])
+
+# Drop columns
+print("Drop single column:")
+print(df.drop('A', axis=1))
+
+# Drop multiple columns
+print("\nDrop multiple columns:")
+print(df.drop(['B', 'C'], axis=1))
+
+# Drop rows
+print("\nDrop rows:")
+print(df.drop(['row1', 'row3']))
+
+# Drop inplace
+df_copy = df.copy()
+df_copy.drop('D', axis=1, inplace=True)
+print("\nAfter inplace drop:")
+print(df_copy)</code></pre>
+
+                        <h3>Common Use Cases</h3>
+                        <ul>
+                            <li>Removing unnecessary columns</li>
+                            <li>Cleaning data by removing rows</li>
+                            <li>Feature selection</li>
+                            <li>Data preprocessing</li>
+                        </ul>
+
+                        <h3>Best Practices</h3>
+                        <ul>
+                            <li>Verify labels before dropping</li>
+                            <li>Use inplace=True carefully</li>
+                            <li>Consider making a copy before dropping</li>
+                            <li>Document dropped data in analysis</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="df-join" class="function-detail">
+                    <h2>DataFrame.join()</h2>
+                    <div class="function-info">
+                        <h3>Description</h3>
+                        <p>Join columns of another DataFrame. This method joins the columns of another DataFrame based on the index. It's particularly useful when you want to combine DataFrames that share an index.</p>
+                        
+                        <h3>Parameters</h3>
+                        <ul>
+                            <li><code>other</code>: DataFrame, Series, or list of DataFrame
+                                <ul>
+                                    <li>Object to join with</li>
+                                </ul>
+                            </li>
+                            <li><code>on</code>: str, list of str, or array-like, optional
+                                <ul>
+                                    <li>Column or index level names to join on</li>
+                                </ul>
+                            </li>
+                            <li><code>how</code>: {'left', 'right', 'outer', 'inner'}, default 'left'
+                                <ul>
+                                    <li>Type of join to perform</li>
+                                </ul>
+                            </li>
+                            <li><code>lsuffix</code>: str, default ''
+                                <ul>
+                                    <li>Suffix to use from left frame's overlapping columns</li>
+                                </ul>
+                            </li>
+                            <li><code>rsuffix</code>: str, default ''
+                                <ul>
+                                    <li>Suffix to use from right frame's overlapping columns</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <h3>Example</h3>
+                        <pre class="line-numbers"><code class="language-python">import pandas as pd
+
+# Create sample DataFrames
+df1 = pd.DataFrame({
+    'A': ['A0', 'A1', 'A2'],
+    'B': ['B0', 'B1', 'B2']
+}, index=['K0', 'K1', 'K2'])
+
+df2 = pd.DataFrame({
+    'C': ['C0', 'C1', 'C2'],
+    'D': ['D0', 'D1', 'D2']
+}, index=['K0', 'K2', 'K3'])
+
+# Basic join
+print("Left join:")
+print(df1.join(df2))
+
+# Different join types
+print("\nInner join:")
+print(df1.join(df2, how='inner'))
+
+print("\nOuter join:")
+print(df1.join(df2, how='outer'))
+
+# Join with suffix
+df3 = pd.DataFrame({
+    'A': ['A3', 'A4', 'A5'],
+    'B': ['B3', 'B4', 'B5']
+}, index=['K0', 'K1', 'K2'])
+
+print("\nJoin with suffix:")
+print(df1.join(df3, lsuffix='_left', rsuffix='_right'))</code></pre>
+
+                        <h3>Common Use Cases</h3>
+                        <ul>
+                            <li>Combining related datasets</li>
+                            <li>Merging supplementary data</li>
+                            <li>Creating feature-rich datasets</li>
+                            <li>Data enrichment</li>
+                        </ul>
+
+                        <h3>Best Practices</h3>
+                        <ul>
+                            <li>Choose appropriate join type</li>
+                            <li>Handle duplicate column names</li>
+                            <li>Verify index alignment</li>
+                            <li>Check for missing values after join</li>
+                        </ul>
+
+                        <h3>Join Types</h3>
+                        <ul>
+                            <li><code>left</code>: Use calling frame's index</li>
+                            <li><code>right</code>: Use other frame's index</li>
+                            <li><code>outer</code>: Use union of indexes</li>
+                            <li><code>inner</code>: Use intersection of indexes</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="df-pivot" class="function-detail">
+                    <h2>DataFrame.pivot()</h2>
+                    <div class="function-info">
+                        <h3>Description</h3>
+                        <p>Reshape data (produce a "pivot" table) based on column values. Uses unique values from specified index / columns to form axes of the resulting DataFrame. This function does not support data aggregation.</p>
+                        
+                        <h3>Parameters</h3>
+                        <ul>
+                            <li><code>index</code>: str or object, optional
+                                <ul>
+                                    <li>Column to use to make new frame's index</li>
+                                </ul>
+                            </li>
+                            <li><code>columns</code>: str or object
+                                <ul>
+                                    <li>Column to use to make new frame's columns</li>
+                                </ul>
+                            </li>
+                            <li><code>values</code>: str or object, optional
+                                <ul>
+                                    <li>Column(s) to use for populating new frame's values</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <h3>Example</h3>
+                        <pre class="line-numbers"><code class="language-python">import pandas as pd
+
+# Create a sample DataFrame
+df = pd.DataFrame({
+    'date': ['2023-01-01', '2023-01-01', '2023-01-02', '2023-01-02'],
+    'product': ['A', 'B', 'A', 'B'],
+    'sales': [100, 200, 150, 250],
+    'quantity': [10, 20, 15, 25]
+})
+
+# Basic pivot
+print("Basic pivot (sales by date and product):")
+pivoted = df.pivot(index='date', 
+                  columns='product', 
+                  values='sales')
+print(pivoted)
+
+# Pivot with multiple values
+print("\nPivot with multiple values:")
+pivoted_multi = df.pivot(index='date',
+                        columns='product',
+                        values=['sales', 'quantity'])
+print(pivoted_multi)</code></pre>
+
+                        <h3>Common Use Cases</h3>
+                        <ul>
+                            <li>Reshaping time series data</li>
+                            <li>Creating cross-tabulations</li>
+                            <li>Converting long to wide format</li>
+                            <li>Data presentation</li>
+                        </ul>
+
+                        <h3>Best Practices</h3>
+                        <ul>
+                            <li>Ensure unique index-column combinations</li>
+                            <li>Handle missing values appropriately</li>
+                            <li>Consider memory usage for large datasets</li>
+                            <li>Use pivot_table() for aggregation needs</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="df-melt" class="function-detail">
+                    <h2>DataFrame.melt()</h2>
+                    <div class="function-info">
+                        <h3>Description</h3>
+                        <p>Unpivot a DataFrame from wide to long format. Transform a DataFrame from wide format to long format, optionally leaving identifiers set. This is the inverse operation of pivot.</p>
+                        
+                        <h3>Parameters</h3>
+                        <ul>
+                            <li><code>id_vars</code>: tuple, list, or ndarray, optional
+                                <ul>
+                                    <li>Column(s) to use as identifier variables</li>
+                                </ul>
+                            </li>
+                            <li><code>value_vars</code>: tuple, list, or ndarray, optional
+                                <ul>
+                                    <li>Column(s) to unpivot</li>
+                                </ul>
+                            </li>
+                            <li><code>var_name</code>: scalar, default 'variable'
+                                <ul>
+                                    <li>Name to use for the 'variable' column</li>
+                                </ul>
+                            </li>
+                            <li><code>value_name</code>: scalar, default 'value'
+                                <ul>
+                                    <li>Name to use for the 'value' column</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <h3>Example</h3>
+                        <pre class="line-numbers"><code class="language-python">import pandas as pd
+
+# Create a sample DataFrame in wide format
+df = pd.DataFrame({
+    'name': ['John', 'Mary'],
+    'math': [90, 95],
+    'physics': [88, 92],
+    'chemistry': [85, 90]
+})
+
+# Basic melt
+print("Basic melt:")
+melted = df.melt(id_vars=['name'])
+print(melted)
+
+# Melt with custom names
+print("\nMelt with custom names:")
+melted_custom = df.melt(
+    id_vars=['name'],
+    value_vars=['math', 'physics', 'chemistry'],
+    var_name='subject',
+    value_name='score'
+)
+print(melted_custom)
+
+# Melt specific columns
+print("\nMelt specific columns:")
+melted_subset = df.melt(
+    id_vars=['name'],
+    value_vars=['math', 'physics']
+)
+print(melted_subset)</code></pre>
+
+                        <h3>Common Use Cases</h3>
+                        <ul>
+                            <li>Converting wide data to long format</li>
+                            <li>Preparing data for time series analysis</li>
+                            <li>Restructuring data for visualization</li>
+                            <li>Creating tidy data format</li>
+                        </ul>
+
+                        <h3>Best Practices</h3>
+                        <ul>
+                            <li>Choose appropriate identifier variables</li>
+                            <li>Use meaningful names for new columns</li>
+                            <li>Consider memory implications</li>
+                            <li>Validate data after melting</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="df-stack" class="function-detail">
+                    <h2>DataFrame.stack()</h2>
+                    <div class="function-info">
+                        <h3>Description</h3>
+                        <p>Stack the prescribed level(s) from columns to index. Return a reshaped DataFrame or Series having a multi-level index with one or more new inner-most levels compared to the current DataFrame.</p>
+                        
+                        <h3>Parameters</h3>
+                        <ul>
+                            <li><code>level</code>: int, str, list, default -1
+                                <ul>
+                                    <li>Level(s) to stack from the column axis onto the index axis</li>
+                                </ul>
+                            </li>
+                            <li><code>dropna</code>: bool, default True
+                                <ul>
+                                    <li>Whether to drop rows in the resulting Frame/Series with missing values</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <h3>Example</h3>
+                        <pre class="line-numbers"><code class="language-python">import pandas as pd
+
+# Create a sample DataFrame with multi-level columns
+df = pd.DataFrame({
+    ('A', '1'): [1, 2, 3],
+    ('A', '2'): [4, 5, 6],
+    ('B', '1'): [7, 8, 9],
+    ('B', '2'): [10, 11, 12]
+})
+
+# Basic stack
+print("Basic stack:")
+stacked = df.stack()
+print(stacked)
+
+# Stack specific level
+print("\nStack specific level:")
+df.columns = pd.MultiIndex.from_tuples(
+    df.columns, names=['upper', 'lower'])
+stacked_level = df.stack('upper')
+print(stacked_level)
+
+# Stack with missing values
+df_na = df.copy()
+df_na.iloc[0, 0] = None
+print("\nStack with NaN handling:")
+print(df_na.stack(dropna=False))</code></pre>
+
+                        <h3>Common Use Cases</h3>
+                        <ul>
+                            <li>Reshaping hierarchical data</li>
+                            <li>Converting wide to long format</li>
+                            <li>Working with panel data</li>
+                            <li>Time series transformations</li>
+                        </ul>
+
+                        <h3>Best Practices</h3>
+                        <ul>
+                            <li>Consider level names for clarity</li>
+                            <li>Handle missing values appropriately</li>
+                            <li>Understand resulting index structure</li>
+                            <li>Use with unstack() for reversible operations</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="df-unstack" class="function-detail">
+                    <h2>DataFrame.unstack()</h2>
+                    <div class="function-info">
+                        <h3>Description</h3>
+                        <p>Pivot a level of the (necessarily hierarchical) index labels to the column axis. This operation is the inverse of stack(). The return is a DataFrame having a new level of column labels whose inner-most level consists of the pivoted index labels.</p>
+                        
+                        <h3>Parameters</h3>
+                        <ul>
+                            <li><code>level</code>: int, str, list, default -1
+                                <ul>
+                                    <li>Level(s) of index to unstack</li>
+                                </ul>
+                            </li>
+                            <li><code>fill_value</code>: scalar, default None
+                                <ul>
+                                    <li>Replace NaN with this value</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <h3>Example</h3>
+                        <pre class="line-numbers"><code class="language-python">import pandas as pd
+
+# Create a sample multi-index DataFrame
+arrays = [
+    ['A', 'A', 'B', 'B'],
+    [1, 2, 1, 2]
+]
+index = pd.MultiIndex.from_arrays(arrays, names=['letter', 'number'])
+df = pd.DataFrame({'value': [100, 200, 300, 400]}, index=index)
+
+# Basic unstack
+print("Basic unstack:")
+print(df.unstack())
+
+# Unstack specific level
+print("\nUnstack by level name:")
+print(df.unstack('number'))
+
+# Unstack with fill value
+df_with_nan = df.copy()
+df_with_nan.iloc[0] = None
+print("\nUnstack with fill value:")
+print(df_with_nan.unstack(fill_value=0))</code></pre>
+
+                        <h3>Common Use Cases</h3>
+                        <ul>
+                            <li>Reshaping hierarchical data</li>
+                            <li>Converting long to wide format</li>
+                            <li>Creating pivot tables</li>
+                            <li>Data presentation</li>
+                        </ul>
+
+                        <h3>Best Practices</h3>
+                        <ul>
+                            <li>Choose appropriate level to unstack</li>
+                            <li>Handle missing values with fill_value</li>
+                            <li>Preserve level names for clarity</li>
+                            <li>Consider memory usage for large datasets</li>
+                        </ul>
+
+                        <h3>Related Operations</h3>
+                        <ul>
+                            <li><code>stack()</code>: Inverse operation</li>
+                            <li><code>pivot()</code>: Alternative reshaping</li>
+                            <li><code>pivot_table()</code>: With aggregation</li>
+                            <li><code>melt()</code>: Wide to long format</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="df-slicing" class="function-detail">
+                    <h2>DataFrame Slicing</h2>
+                    <div class="function-info">
+                        <h3>Description</h3>
+                        <p>Slice a DataFrame using various methods including label-based and integer-based indexing. Slicing allows you to select specific portions of your data based on index labels, boolean conditions, or integer positions.</p>
+                        
+                        <h3>Slicing Methods</h3>
+                        <ul>
+                            <li>Basic indexing with []</li>
+                            <li>Label-based slicing with .loc[]</li>
+                            <li>Integer-based slicing with .iloc[]</li>
+                            <li>Boolean indexing</li>
+                        </ul>
+
+                        <h3>Example</h3>
+                        <pre class="line-numbers"><code class="language-python">import pandas as pd
+
+# Create a sample DataFrame
+df = pd.DataFrame({
+    'A': range(1, 6),
+    'B': ['a', 'b', 'c', 'd', 'e'],
+    'C': range(10, 60, 10)
+}, index=['row1', 'row2', 'row3', 'row4', 'row5'])
+
+# Basic row slicing using integer position
+print("Basic row slicing [start:stop]:")
+print(df[1:3])  # Get rows 1 and 2 (zero-based)
+
+# Slice with step
+print("\nSlice with step [start:stop:step]:")
+print(df[0:5:2])  # Get every second row from 0 to 4
+
+# Basic column selection
+print("\nSelect single column:")
+print(df['A'])
+
+# Select multiple columns
+print("\nSelect multiple columns:")
+print(df[['A', 'B']])
+
+# Row slicing using index labels
+print("\nSlice rows by label:")
+print(df['row1':'row3'])
+
+# Boolean indexing
+print("\nFilter rows by condition:")
+print(df[df['A'] > 3])
+
+# Combining conditions
+print("\nComplex filtering:")
+print(df[(df['A'] > 2) & (df['C'] < 40)])
+
+# Using iloc for integer-based slicing
+print("\nInteger-based slicing:")
+print(df.iloc[1:3, 0:2])  # Rows 1-2, Columns 0-1
+
+# Using loc for label-based slicing
+print("\nLabel-based slicing:")
+print(df.loc['row2':'row4', ['A', 'B']])</code></pre>
+
+                        <h3>Common Use Cases</h3>
+                        <ul>
+                            <li>Selecting specific columns or rows</li>
+                            <li>Filtering data based on conditions</li>
+                            <li>Creating subsets of data</li>
+                            <li>Data sampling</li>
+                            <li>Feature selection</li>
+                        </ul>
+
+                        <h3>Best Practices</h3>
+                        <ul>
+                            <li>Use .loc[] for label-based access</li>
+                            <li>Use .iloc[] for integer-based access</li>
+                            <li>Chain conditions with & (and) and | (or)</li>
+                            <li>Verify index labels before slicing</li>
+                            <li>Handle missing data appropriately</li>
+                        </ul>
+
+                        <h3>Key Points</h3>
+                        <ul>
+                            <li>[] supports basic column selection and boolean indexing</li>
+                            <li>.loc[] is inclusive of end point</li>
+                            <li>.iloc[] is exclusive of end point</li>
+                            <li>Boolean indexing requires parentheses for complex conditions</li>
+                            <li>Chained indexing should be avoided</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="df-merge" class="function-detail">
+                    <h2>DataFrame.merge()</h2>
+                    <div class="function-info">
+                        <h3>Description</h3>
+                        <p>Merge DataFrame or named Series objects with a database-style join. This method provides a SQL-like merge operation between DataFrame objects, with support for different types of joins and various merge criteria.</p>
+                        
+                        <h3>Parameters</h3>
+                        <ul>
+                            <li><code>right</code>: DataFrame or named Series
+                                <ul>
+                                    <li>Object to merge with</li>
+                                </ul>
+                            </li>
+                            <li><code>how</code>: {'left', 'right', 'outer', 'inner'}, default 'inner'
+                                <ul>
+                                    <li>Type of merge to be performed</li>
+                                </ul>
+                            </li>
+                            <li><code>on</code>: label or list
+                                <ul>
+                                    <li>Column(s) to join on</li>
+                                </ul>
+                            </li>
+                            <li><code>left_on</code>: label or list
+                                <ul>
+                                    <li>Column(s) from left DataFrame to join on</li>
+                                </ul>
+                            </li>
+                            <li><code>right_on</code>: label or list
+                                <ul>
+                                    <li>Column(s) from right DataFrame to join on</li>
+                                </ul>
+                            </li>
+                            <li><code>suffixes</code>: tuple of (str, str), default ('_x', '_y')
+                                <ul>
+                                    <li>Suffixes to apply to overlapping column names</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <h3>Example</h3>
+                        <pre class="line-numbers"><code class="language-python">import pandas as pd
+
+# Create sample DataFrames
+df1 = pd.DataFrame({
+    'employee_id': [1, 2, 3, 4],
+    'name': ['John', 'Mary', 'Bob', 'Alice'],
+    'department_id': [1, 2, 1, 3]
+})
+
+df2 = pd.DataFrame({
+    'department_id': [1, 2, 3, 4],
+    'department_name': ['IT', 'HR', 'Finance', 'Sales']
+})
+
+# Inner merge (default)
+print("Inner merge:")
+print(df1.merge(df2, on='department_id'))
+
+# Left merge
+print("\nLeft merge:")
+print(df1.merge(df2, on='department_id', how='left'))
+
+# Using different column names
+df3 = pd.DataFrame({
+    'dept_id': [1, 2, 3, 4],
+    'budget': [100000, 75000, 90000, 80000]
+})
+
+print("\nMerge with different column names:")
+print(df1.merge(df3, 
+                left_on='department_id',
+                right_on='dept_id'))
+
+# Multiple key merge
+df4 = pd.DataFrame({
+    'employee_id': [1, 2, 3, 4],
+    'department_id': [1, 2, 1, 3],
+    'year': [2023, 2023, 2023, 2023],
+    'salary': [50000, 60000, 55000, 65000]
+})
+
+print("\nMerge on multiple keys:")
+print(df1.merge(df4, 
+                on=['employee_id', 'department_id']))</code></pre>
+
+                        <h3>Common Use Cases</h3>
+                        <ul>
+                            <li>Combining related datasets</li>
+                            <li>Database-style joins</li>
+                            <li>Enriching data with additional information</li>
+                            <li>Creating denormalized datasets</li>
+                        </ul>
+
+                        <h3>Best Practices</h3>
+                        <ul>
+                            <li>Verify key relationships before merging</li>
+                            <li>Choose appropriate join type</li>
+                            <li>Handle duplicate column names</li>
+                            <li>Check for data loss after merging</li>
+                            <li>Consider memory usage for large datasets</li>
+                        </ul>
+
+                        <h3>Join Types</h3>
+                        <ul>
+                            <li><code>inner</code>: Use intersection of keys</li>
+                            <li><code>left</code>: Use keys from left frame</li>
+                            <li><code>right</code>: Use keys from right frame</li>
+                            <li><code>outer</code>: Use union of keys</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="df-read-sql" class="function-detail">
+                    <h2>DataFrame.read_sql()</h2>
+                    <div class="function-info">
+                        <h3>Description</h3>
+                        <p>Read SQL query or database table into a DataFrame. This function provides a convenient way to read data from SQL databases directly into a pandas DataFrame, supporting various SQL databases through SQLAlchemy.</p>
+                        
+                        <h3>Parameters</h3>
+                        <ul>
+                            <li><code>sql</code>: str or SQLAlchemy Selectable
+                                <ul>
+                                    <li>SQL query or table name</li>
+                                </ul>
+                            </li>
+                            <li><code>con</code>: SQLAlchemy connectable or str
+                                <ul>
+                                    <li>Database connection string or connection object</li>
+                                </ul>
+                            </li>
+                            <li><code>index_col</code>: str or list of str, optional
+                                <ul>
+                                    <li>Column(s) to set as index</li>
+                                </ul>
+                            </li>
+                            <li><code>params</code>: list, tuple or dict, optional
+                                <ul>
+                                    <li>Parameters to pass to execute method</li>
+                                </ul>
+                            </li>
+                            <li><code>parse_dates</code>: list or dict, optional
+                                <ul>
+                                    <li>List of column names to parse as dates</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <h3>Example</h3>
+                        <pre class="line-numbers"><code class="language-python">import pandas as pd
+from sqlalchemy import create_engine
+
+# Create a database connection
+engine = create_engine('sqlite:///example.db')
+
+# Read entire table
+df = pd.read_sql('SELECT * FROM employees', con=engine)
+
+# Read with specific columns
+df = pd.read_sql('''
+    SELECT employee_id, name, department 
+    FROM employees 
+    WHERE department = 'IT'
+''', con=engine)
+
+# Using parameters
+query = '''
+    SELECT * 
+    FROM employees 
+    WHERE department = :dept 
+    AND hire_date >= :start_date
+'''
+params = {
+    'dept': 'IT',
+    'start_date': '2023-01-01'
+}
+df = pd.read_sql(query, con=engine, params=params)
+
+# Read with date parsing
+df = pd.read_sql(
+    'SELECT * FROM employees',
+    con=engine,
+    parse_dates=['hire_date', 'birth_date']
+)
+
+# Set index column
+df = pd.read_sql(
+    'SELECT * FROM employees',
+    con=engine,
+    index_col='employee_id')</code></pre>
+
+                        <h3>Common Use Cases</h3>
+                        <ul>
+                            <li>Loading data from databases</li>
+                            <li>Executing complex SQL queries</li>
+                            <li>Data analysis from SQL sources</li>
+                            <li>ETL processes</li>
+                        </ul>
+
+                        <h3>Best Practices</h3>
+                        <ul>
+                            <li>Use parameterized queries for security</li>
+                            <li>Close database connections after use</li>
+                            <li>Handle large queries with chunking</li>
+                            <li>Specify data types when needed</li>
+                            <li>Use appropriate connection pooling</li>
+                        </ul>
+
+                        <h3>Supported Databases</h3>
+                        <ul>
+                            <li>SQLite</li>
+                            <li>PostgreSQL</li>
+                            <li>MySQL</li>
+                            <li>Oracle</li>
+                            <li>Microsoft SQL Server</li>
+                            <li>Any database supported by SQLAlchemy</li>
+                        </ul>
+
+                        <h3>Security Considerations</h3>
+                        <ul>
+                            <li>Always use parameterized queries</li>
+                            <li>Avoid string concatenation in queries</li>
+                            <li>Manage connection credentials securely</li>
+                            <li>Implement proper access controls</li>
                         </ul>
                     </div>
                 </div>
