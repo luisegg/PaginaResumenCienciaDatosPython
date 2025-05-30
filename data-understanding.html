@@ -37,7 +37,7 @@
         <main class="detailed-phase">
             <aside class="sidebar">
                 <div class="sidebar-section">
-                    <h3>Pandas</h3>
+                    <h3>Main Data Frame Functions</h3>
                     <div class="sidebar-group">
                         <h4>Data Loading</h4>
                         <ul>
@@ -49,11 +49,11 @@
                         <ul>
                             <li><a href="#df-info" class="function-link">DataFrame.info()</a></li>
                             <li><a href="#df-describe" class="function-link">DataFrame.describe()</a></li>
+                            <li><a href="#df-skew" class="function-link">DataFrame.skew()</a></li>
+                            <li><a href="#df-kurt" class="function-link">DataFrame.kurt()</a></li>
                             <li><a href="#df-shape" class="function-link">DataFrame.shape</a></li>
                             <li><a href="#df-columns" class="function-link">DataFrame.columns</a></li>
                             <li><a href="#df-dtypes" class="function-link">DataFrame.dtypes</a></li>
-                            <li><a href="#df-head" class="function-link">DataFrame.head()</a></li>
-                            <li><a href="#df-slicing" class="function-link">DataFrame slicing</a></li>
                             <li><a href="#df-nunique" class="function-link">DataFrame.nunique()</a></li>
                             <li><a href="#df-drop-duplicates" class="function-link">DataFrame['col_name'].drop_duplicates()</a></li>
                             <li><a href="#df-sort-values" class="function-link">DataFrame.sort_values('col_name')</a></li>
@@ -63,17 +63,17 @@
                             <li><a href="#df-isna-sum" class="function-link">DataFrame.isna().sum()</a></li>
                             <li><a href="#df-count" class="function-link">DataFrame.count()</a></li>
                             <li><a href="#df-groupby" class="function-link">DataFrame.groupby()</a></li>
-                            <li><a href="#df-hist" class="function-link">DataFrame.hist()</a></li>
-                            <li><a href="#df-hist" class="function-link">DataFrame['col_name'].plot.hist()</a></li>
-                            
                         </ul>
                     </div>
 
                     <div class="sidebar-group">
                         <h4>Data Access</h4>
                         <ul>
+                            <li><a href="#df-head" class="function-link">DataFrame.head()</a></li>
+                            <li><a href="#df-slicing" class="function-link">DataFrame slicing</a></li>
                             <li><a href="#df-iloc" class="function-link">DataFrame.iloc()</a></li>
                             <li><a href="#df-loc" class="function-link">DataFrame.loc()</a></li>
+                            <li><a href="#df-select-dtypes" class="function-link">DataFrame.select_dtypes()</a></li>
                         </ul>
                     </div>     
 
@@ -82,6 +82,7 @@
                         <ul>
                             <li><a href="#df-concat" class="function-link">DataFrame.concat()</a></li>
                             <li><a href="#df-drop" class="function-link">DataFrame.drop()</a></li>
+                            <li><a href="#df-insert" class="function-link">DataFrame.insert()</a></li>
                         </ul>
                     </div>
 
@@ -119,39 +120,37 @@
                         </ul>
                     </div>
 
+                    <div class="sidebar-group">
+                        <h4>My Code</h4>
+                        <ul>
+                            <li><a href="#describe2" class="function-link">describe2()</a></li>
+                            <li><a href="#missing-percentage" class="function-link">missing_percentage()</a></li>
+                            <li><a href="#get-outliers" class="function-link">get_outliers()</a></li>
+                        </ul>
+                    </div>
+
                    
                 </div>
 
                 <div class="sidebar-section">
                     <h3>Visualization</h3>
                     <div class="sidebar-group">
-                        <h4>Seaborn</h4>
+                        <h4>Other</h4>
                         <ul>
-                            <li><a href="#sns-heatmap" class="function-link">sns.heatmap()</a></li>
-                            <li><a href="#sns-pairplot" class="function-link">sns.pairplot()</a></li>
-                            <li><a href="#sns-boxplot" class="function-link">sns.boxplot()</a></li>
+                            <li><a href="#df-hist" class="function-link">DataFrame.hist() and plot.hist()</a></li>
                         </ul>
                     </div>
                     <div class="sidebar-group">
-                        <h4>Matplotlib</h4>
+                        <h4>My Graphs</h4>
                         <ul>
-                            <li><a href="#plt-plot" class="function-link">plt.plot()</a></li>
-                            <li><a href="#plt-scatter" class="function-link">plt.scatter()</a></li>
-                            <li><a href="#plt-hist" class="function-link">plt.hist()</a></li>
+                            <li><a href="#kde" class="function-link">plot_kde_hist()</a></li>
+                            <li><a href="#sns-hist-stats" class="function-link">sns_hist_with_stats()</a></li>
+                            <li><a href="#boxplots" class="function-link">boxplots()</a></li>
                         </ul>
                     </div>
                 </div>
 
-                <div class="sidebar-section">
-                    <h3>Advanced Tools</h3>
-                    <div class="sidebar-group">
-                        <h4>Pandas-Profiling</h4>
-                        <ul>
-                            <li><a href="#profile-report" class="function-link">ProfileReport()</a></li>
-                            <li><a href="#profile-to-file" class="function-link">profile.to_file()</a></li>
-                        </ul>
-                    </div>
-                </div>
+
             </aside>
 
             <section class="content-panel">
@@ -2428,6 +2427,697 @@ df = pd.read_sql(
                             <li>Avoid string concatenation in queries</li>
                             <li>Manage connection credentials securely</li>
                             <li>Implement proper access controls</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="describe2" class="function-detail">
+                    <h2>describe2()</h2>
+                    <div class="function-info">
+                        <h3>Description</h3>
+                        <p>An enhanced version of pandas' describe() function that provides additional statistical measures including skewness, kurtosis, and modes for numeric columns. This function extends the standard descriptive statistics with more detailed information about the data distribution.</p>
+                        
+                        <h3>Parameters</h3>
+                        <ul>
+                            <li><code>df</code>: pandas.DataFrame
+                                <ul>
+                                    <li>The DataFrame to analyze</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <h3>Returns</h3>
+                        <p>pandas.DataFrame: A transposed DataFrame containing enhanced descriptive statistics</p>
+
+                        <h3>Example</h3>
+                        <pre class="line-numbers"><code class="language-python">import pandas as pd
+
+def describe2(df):
+    # Solo columnas numéricas
+    df_numeric = df.select_dtypes(include='number')
+    
+    # Estadísticas básicas
+    desc = df_numeric.describe()
+    
+    # Renombrar el cuartil 50% como "50% (Median)"
+    desc.rename(index={'50%': '50% (Median)'}, inplace=True)
+    
+    # Agregar skewness y curtosis
+    desc.loc['skew'] = df_numeric.skew()
+    desc.loc['kurtosis'] = df_numeric.kurtosis()
+    
+    # Agregar todas las modas como string separados por coma
+    mode_values = df_numeric.mode()
+    mode_strs = []
+    for col in df_numeric.columns:
+        modes = mode_values[col].dropna().tolist()
+        mode_str = ', '.join(map(str, modes))
+        mode_strs.append(mode_str)
+    desc.loc['mode'] = mode_strs
+    
+    # Reordenar filas: colocar 'mode' justo después de 'count'
+    orden_deseado = ['count', 'mode'] + [i for i in desc.index if i not in ['count', 'mode']]
+    desc = desc.loc[orden_deseado]
+    
+    # Transponer
+    return desc.T
+
+# Example usage:
+df = pd.DataFrame({
+    'A': [1, 2, 2, 3, 4, 5],
+    'B': [10, 20, 20, 30, 40, 50],
+    'C': [1.5, 2.5, 2.5, 3.5, 4.5, 5.5]
+})
+
+result = describe2(df)
+print(result)</code></pre>
+
+                        <h3>Example Output</h3>
+                        <div class="output-container">
+                            <img src="images/describe2_output.png" alt="Example output of describe2() function showing statistical summary of loan dataset" class="output-image" style="max-width: 100%; margin: 20px 0; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        </div>
+
+                        <details>
+                            <summary>Text version of the output (for accessibility)</summary>
+                            <pre class="line-numbers"><code class="language-text">                        count    mode        mean           std         min        25%    50% (Median)      75%         max       skew     kurtosis
+person_age              32581.0    23    27.7346     6.348078      20.0      23.0          26.0      30.0      144.0    2.581393   18.560825
+person_income          32581.0  60000  66074.84847  61983.119168  4000.0   38500.0       55000.0   79200.0   6000000.0  32.865349  2693.272776
+person_emp_length      31686.0    0.0    4.789686     4.14263       0.0       2.0           4.0       7.0       123.0    2.614455   43.722338
+loan_amnt             32581.0  10000  9589.371106   6322.086646    500.0    5000.0        8000.0   12200.0    35000.0    1.192477    1.423565
+loan_int_rate         29465.0   7.51   11.011695     3.240459      5.42       7.9          10.99     13.47      23.22    0.20855   -0.671609
+loan_percent_income   32581.0    0.1    0.170203     0.106782      0.0       0.09          0.15      0.23       0.83    1.064669    1.223687
+cb_person_cred_hist_length  32581.0    2    5.804211     4.055001      2.0       3.0           4.0       8.0       30.0    1.66179    3.716194</code></pre>
+                        </details>
+
+                        <h3>Features</h3>
+                        <ul>
+                            <li>Automatically selects numeric columns</li>
+                            <li>Includes standard descriptive statistics (count, mean, std, min, max, quartiles)</li>
+                            <li>Adds skewness measure for distribution asymmetry</li>
+                            <li>Adds kurtosis measure for distribution "tailedness"</li>
+                            <li>Includes mode(s) for each numeric column</li>
+                            <li>Presents results in a transposed format for better readability</li>
+                        </ul>
+
+                        <h3>Output Statistics</h3>
+                        <ul>
+                            <li><code>count</code>: Number of non-null observations</li>
+                            <li><code>mode</code>: Most frequent value(s)</li>
+                            <li><code>mean</code>: Average value</li>
+                            <li><code>std</code>: Standard deviation</li>
+                            <li><code>min</code>: Minimum value</li>
+                            <li><code>25%</code>: First quartile</li>
+                            <li><code>50% (Median)</code>: Median value</li>
+                            <li><code>75%</code>: Third quartile</li>
+                            <li><code>max</code>: Maximum value</li>
+                            <li><code>skew</code>: Skewness measure</li>
+                            <li><code>kurtosis</code>: Kurtosis measure</li>
+                        </ul>
+
+                        <h3>Best Practices</h3>
+                        <ul>
+                            <li>Use for initial exploratory data analysis</li>
+                            <li>Check skewness and kurtosis for distribution shape</li>
+                            <li>Compare mode with mean and median for distribution insights</li>
+                            <li>Consider outliers when interpreting results</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="missing-percentage" class="function-detail">
+                    <h2>missing_percentage()</h2>
+                    <div class="function-info">
+                        <h3>Description</h3>
+                        <p>Calculate the percentage of missing values (NaN) for each column in a DataFrame. This function provides a quick way to assess data completeness and identify columns that might need cleaning or imputation.</p>
+                        
+                        <h3>Parameters</h3>
+                        <ul>
+                            <li><code>df</code>: pandas.DataFrame
+                                <ul>
+                                    <li>The DataFrame to analyze for missing values</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <h3>Returns</h3>
+                        <p>pandas.Series: A series containing the percentage of missing values for each column</p>
+
+                        <h3>Example</h3>
+                        <pre class="line-numbers"><code class="language-python">import pandas as pd
+
+def missing_percentage(df):
+    return (df.isna().sum() / len(df)) * 100
+
+# Example usage:
+df = pd.DataFrame({
+    'A': [1, 2, None, 4, 5],
+    'B': [None, 2, 3, None, 5],
+    'C': [1, None, None, 4, None]
+})
+
+missing_pct = missing_percentage(df)
+print("Missing values percentage by column:")
+print(missing_pct)
+
+# Output:
+# A    20.0
+# B    40.0
+# C    60.0
+# dtype: float64</code></pre>
+
+                        <h3>Features</h3>
+                        <ul>
+                            <li>Simple and efficient calculation</li>
+                            <li>Works with any DataFrame regardless of size</li>
+                            <li>Returns results as percentages for easy interpretation</li>
+                            <li>Handles all data types (numeric, categorical, datetime, etc.)</li>
+                        </ul>
+
+                        <h3>Common Use Cases</h3>
+                        <ul>
+                            <li>Data quality assessment</li>
+                            <li>Identifying columns that need cleaning</li>
+                            <li>Deciding on imputation strategies</li>
+                            <li>Reporting on data completeness</li>
+                        </ul>
+
+                        <h3>Best Practices</h3>
+                        <ul>
+                            <li>Use early in the data analysis process</li>
+                            <li>Consider setting thresholds for acceptable missing percentages</li>
+                            <li>Combine with visualization for better insights</li>
+                            <li>Document decisions made based on missing value analysis</li>
+                        </ul>
+
+                        <h3>Tips</h3>
+                        <ul>
+                            <li>Sort results to identify most problematic columns</li>
+                            <li>Use with df.info() for comprehensive data overview</li>
+                            <li>Consider dropping columns with too many missing values</li>
+                            <li>Look for patterns in missing data distribution</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="kde" class="function-detail">
+                    <h2>plot_kde_hist()</h2>
+                    <div class="function-info">
+                        <h3>Description</h3>
+                        <p>Create Kernel Density Estimation (KDE) plots for all numeric columns in a DataFrame. This function automatically arranges the plots in a grid layout and provides a visual representation of the probability density of each numeric variable.</p>
+                        
+                        <h3>Parameters</h3>
+                        <ul>
+                            <li><code>df</code>: pandas.DataFrame
+                                <ul>
+                                    <li>The DataFrame containing the numeric columns to plot</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <h3>Returns</h3>
+                        <p>None - Displays the plots using matplotlib</p>
+
+                        <h3>Example</h3>
+                        <pre class="line-numbers"><code class="language-python">import math
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+def plot_kde_hist(df):
+    # Solo columnas numéricas
+    df_numeric = df.select_dtypes(include='number')
+
+    # Número de columnas numéricas
+    num_cols = df_numeric.shape[1]
+
+    # Crear subplots (ajusta el número de filas/columnas según lo que necesites)
+    fig, axes = plt.subplots(nrows=math.ceil(num_cols/3), ncols=3, figsize=(10, 8))
+
+    # Si solo hay una columna, axes no es un array
+    if num_cols == 1:
+        axes = [axes]
+    else:
+        axes = axes.ravel()
+
+    # Generar gráfico KDE por cada columna
+    for ax, col in zip(axes, df_numeric.columns):
+        sns.kdeplot(data=df_numeric[col].dropna(), ax=ax, fill=True)
+        ax.set_title(f'Distribución KDE: {col}')
+        ax.set_xlabel("Valor")
+        ax.set_ylabel("Densidad")
+        ax.grid(True)
+
+    plt.tight_layout()
+    plt.show()
+
+# Example usage:
+df = pd.DataFrame({
+    'height': [170, 175, 160, 180, 165, 172, 168],
+    'weight': [70, 75, 60, 85, 65, 71, 69],
+    'age': [25, 30, 35, 28, 32, 27, 29]
+})
+
+plot_kde_hist(df)</code></pre>
+                        <h3>Example Output</h3>
+                        <div class="output-container">
+                            <img src="images/plot_kde_hist_output.png" alt="Example output of describe2() function showing statistical summary of loan dataset" class="output-image" style="max-width: 100%; margin: 20px 0; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        </div>
+
+                        <h3>Features</h3>
+                        <ul>
+                            <li>Automatic selection of numeric columns</li>
+                            <li>Dynamic grid layout (3 columns)</li>
+                            <li>Filled KDE plots for better visualization</li>
+                            <li>Automatic handling of missing values</li>
+                            <li>Grid lines for better readability</li>
+                            <li>Proper spacing between subplots</li>
+                        </ul>
+
+                        <h3>Common Use Cases</h3>
+                        <ul>
+                            <li>Visualizing data distributions</li>
+                            <li>Identifying distribution shapes (normal, skewed, multimodal)</li>
+                            <li>Comparing variable distributions</li>
+                            <li>Exploratory Data Analysis (EDA)</li>
+                        </ul>
+
+                        <h3>Best Practices</h3>
+                        <ul>
+                            <li>Use early in the data analysis process</li>
+                            <li>Consider the scale of variables when interpreting</li>
+                            <li>Look for patterns and anomalies in distributions</li>
+                            <li>Compare with other distribution plots (histograms, box plots)</li>
+                        </ul>
+
+                        <h3>Interpretation Tips</h3>
+                        <ul>
+                            <li>Peaks indicate common values or modes</li>
+                            <li>Width indicates spread of data</li>
+                            <li>Asymmetry suggests skewness</li>
+                            <li>Multiple peaks suggest multimodal distribution</li>
+                            <li>Long tails indicate potential outliers</li>
+                        </ul>
+
+                        <h3>Dependencies</h3>
+                        <ul>
+                            <li>pandas: Data manipulation</li>
+                            <li>seaborn: KDE plotting</li>
+                            <li>matplotlib: Plot creation and customization</li>
+                            <li>math: Layout calculations</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="sns-hist-stats" class="function-detail">
+                    <h2>sns_hist_with_stats()</h2>
+                    <div class="function-info">
+                        <h3>Description</h3>
+                        <p>Create enhanced histograms for all numeric columns in a DataFrame using Seaborn, with additional statistical indicators (mean, median, and mode) overlaid as vertical lines. The function automatically arranges plots in a grid and includes optional KDE curves.</p>
+                        
+                        <h3>Parameters</h3>
+                        <ul>
+                            <li><code>df</code>: pandas.DataFrame
+                                <ul>
+                                    <li>The DataFrame containing the numeric columns to plot</li>
+                                </ul>
+                            </li>
+                            <li><code>bins</code>: int, default 10
+                                <ul>
+                                    <li>Number of bins for the histogram</li>
+                                </ul>
+                            </li>
+                            <li><code>color</code>: str, default 'skyblue'
+                                <ul>
+                                    <li>Color of the histogram bars</li>
+                                </ul>
+                            </li>
+                            <li><code>n_cols</code>: int, default 2
+                                <ul>
+                                    <li>Number of columns in the grid layout</li>
+                                </ul>
+                            </li>
+                            <li><code>figsize_per_plot</code>: tuple, default (6, 4)
+                                <ul>
+                                    <li>Figure size for each individual plot (width, height)</li>
+                                </ul>
+                            </li>
+                            <li><code>kde</code>: bool, default True
+                                <ul>
+                                    <li>Whether to include KDE curve overlay</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <h3>Returns</h3>
+                        <p>None - Displays the plots using matplotlib</p>
+
+                        <h3>Example</h3>
+                        <pre class="line-numbers"><code class="language-python">import seaborn as sns
+import matplotlib.pyplot as plt
+import pandas as pd
+import math
+
+def sns_hist_with_stats(df, bins=10, color='skyblue', n_cols=2, figsize_per_plot=(6, 4), kde=True):
+    # Select only numeric columns
+    df_numeric = df.select_dtypes(include='number')
+    num_plots = len(df_numeric.columns)
+
+    # Automatically calculate number of rows
+    n_rows = math.ceil(num_plots / n_cols)
+
+    # Create subplots
+    fig, axes = plt.subplots(n_rows, n_cols, figsize=(n_cols * figsize_per_plot[0], n_rows * figsize_per_plot[1]))
+    axes = axes.flatten()
+
+    for i, col in enumerate(df_numeric.columns):
+        ax = axes[i]
+        sns.histplot(df_numeric[col], bins=bins, kde=kde, color=color, ax=ax)
+
+        # Mean line
+        ax.axvline(df_numeric[col].mean(), color='red', linestyle='--', label='Mean')
+        # Median line
+        ax.axvline(df_numeric[col].median(), color='blue', linestyle='-.', label='Median')
+        # Mode lines (can be multiple)
+        modes = df_numeric[col].mode().dropna().unique()
+        for j, mode in enumerate(modes):
+            # Add only one legend label (for first mode line)
+            label = 'Mode' if j == 0 else None
+            ax.axvline(mode, color='green', linestyle=':', label=label)
+
+        ax.set_title(f'{col}')
+        ax.legend()
+        ax.grid(True)
+
+    # Hide any unused subplots
+    for j in range(num_plots, len(axes)):
+        axes[j].set_visible(False)
+
+    plt.tight_layout()
+    plt.show()
+
+# Example usage:
+df = pd.DataFrame({
+    'height': [170, 175, 160, 180, 165, 172, 168],
+    'weight': [70, 75, 60, 85, 65, 71, 69],
+    'age': [25, 30, 35, 28, 32, 27, 29]
+})
+
+sns_hist_with_stats(df, bins=15, kde=True)</code></pre>
+
+                        <h3>Features</h3>
+                        <ul>
+                            <li>Automatic selection of numeric columns</li>
+                            <li>Customizable grid layout</li>
+                            <li>Statistical indicators (mean, median, mode)</li>
+                            <li>Optional KDE curve overlay</li>
+                            <li>Automatic legend and grid</li>
+                            <li>Flexible plot sizing</li>
+                            <li>Support for multiple modes</li>
+                        </ul>
+
+                        <h3>Statistical Indicators</h3>
+                        <ul>
+                            <li>Red dashed line (--): Mean</li>
+                            <li>Blue dash-dot line (-·): Median</li>
+                            <li>Green dotted line (:): Mode(s)</li>
+                            <li>Blue curve (optional): KDE</li>
+                        </ul>
+
+                        <h3>Common Use Cases</h3>
+                        <ul>
+                            <li>Detailed distribution analysis</li>
+                            <li>Comparing central tendency measures</li>
+                            <li>Identifying data skewness</li>
+                            <li>Detecting multimodal distributions</li>
+                            <li>Advanced exploratory data analysis</li>
+                        </ul>
+
+                        <h3>Best Practices</h3>
+                        <ul>
+                            <li>Adjust bin count based on data size</li>
+                            <li>Consider KDE for continuous variables</li>
+                            <li>Use appropriate figure sizes for readability</li>
+                            <li>Compare statistical indicators for distribution insights</li>
+                            <li>Check for multiple modes in categorical-like data</li>
+                        </ul>
+
+                        <h3>Dependencies</h3>
+                        <ul>
+                            <li>seaborn: Enhanced statistical plotting</li>
+                            <li>matplotlib: Base plotting library</li>
+                            <li>pandas: Data manipulation</li>
+                            <li>math: Layout calculations</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="boxplots" class="function-detail">
+                    <h2>boxplots()</h2>
+                    <div class="function-info">
+                        <h3>Description</h3>
+                        <p>Create horizontal boxplots for all numeric columns in a DataFrame. This function automatically arranges the plots in a grid layout and provides a visual representation of the distribution and potential outliers for each numeric variable.</p>
+                        
+                        <h3>Parameters</h3>
+                        <ul>
+                            <li><code>df</code>: pandas.DataFrame
+                                <ul>
+                                    <li>The DataFrame containing the numeric columns to plot</li>
+                                </ul>
+                            </li>
+                            <li><code>n_cols</code>: int, default 3
+                                <ul>
+                                    <li>Number of columns in the grid layout</li>
+                                </ul>
+                            </li>
+                            <li><code>figsize_per_plot</code>: tuple, default (4, 4)
+                                <ul>
+                                    <li>Figure size for each individual plot (width, height)</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <h3>Returns</h3>
+                        <p>None - Displays the plots using matplotlib</p>
+
+                        <h3>Example</h3>
+                        <pre class="line-numbers"><code class="language-python">import matplotlib.pyplot as plt
+import pandas as pd
+import math
+
+def boxplots(df, n_cols=3, figsize_per_plot=(4, 4)):
+    # Seleccionar columnas numéricas
+    df_numeric = df.select_dtypes(include='number')
+    num_plots = len(df_numeric.columns)
+
+    # Calcular filas necesarias
+    n_rows = math.ceil(num_plots / n_cols)
+
+    # Crear figura y subplots
+    fig, axes = plt.subplots(n_rows, n_cols, figsize=(n_cols * figsize_per_plot[0], n_rows * figsize_per_plot[1]))
+    axes = axes.flatten()  # Para indexar fácilmente, aunque sea 1D
+
+    for i, col in enumerate(df_numeric.columns):
+        ax = axes[i]
+        ax.boxplot(df_numeric[col].dropna(), orientation='horizontal', patch_artist=True)
+        ax.set_title(f'{col}')
+        ax.set_ylabel('Valor')
+        ax.grid(True)
+
+    # Ocultar subplots vacíos si los hay
+    for j in range(num_plots, len(axes)):
+        axes[j].set_visible(False)
+
+    plt.tight_layout()
+    plt.show()
+
+# Example usage:
+df = pd.DataFrame({
+    'height': [170, 175, 160, 180, 165, 172, 168, 190],  # Added outlier
+    'weight': [70, 75, 60, 85, 65, 71, 69, 100],        # Added outlier
+    'age': [25, 30, 35, 28, 32, 27, 29, 31]
+})
+
+boxplots(df)</code></pre>
+
+                        <h3>Features</h3>
+                        <ul>
+                            <li>Automatic selection of numeric columns</li>
+                            <li>Horizontal orientation for better label readability</li>
+                            <li>Filled boxes for better visualization</li>
+                            <li>Automatic grid layout</li>
+                            <li>Grid lines for better readability</li>
+                            <li>Handles missing values automatically</li>
+                            <li>Customizable plot sizing</li>
+                        </ul>
+
+                        <h3>Box Plot Components</h3>
+                        <ul>
+                            <li>Box: Represents the IQR (Interquartile Range)
+                                <ul>
+                                    <li>Lower edge: 25th percentile (Q1)</li>
+                                    <li>Middle line: Median (Q2)</li>
+                                    <li>Upper edge: 75th percentile (Q3)</li>
+                                </ul>
+                            </li>
+                            <li>Whiskers: Extend to the most extreme non-outlier points</li>
+                            <li>Points: Individual points beyond whiskers represent outliers</li>
+                        </ul>
+
+                        <h3>Common Use Cases</h3>
+                        <ul>
+                            <li>Identifying outliers</li>
+                            <li>Comparing distributions across variables</li>
+                            <li>Assessing data spread and skewness</li>
+                            <li>Detecting potential data quality issues</li>
+                            <li>Exploratory Data Analysis (EDA)</li>
+                        </ul>
+
+                        <h3>Best Practices</h3>
+                        <ul>
+                            <li>Use horizontal orientation for long variable names</li>
+                            <li>Adjust figure size based on number of variables</li>
+                            <li>Consider scale differences between variables</li>
+                            <li>Investigate outliers identified by the plots</li>
+                            <li>Use in conjunction with other distribution plots</li>
+                        </ul>
+
+                        <h3>Dependencies</h3>
+                        <ul>
+                            <li>matplotlib: Base plotting library</li>
+                            <li>pandas: Data manipulation</li>
+                            <li>math: Layout calculations</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="get-outliers" class="function-detail">
+                    <h2>get_outliers()</h2>
+                    <div class="function-info">
+                        <h3>Description</h3>
+                        <p>Identify and return outliers in a specified numeric column using the Interquartile Range (IQR) method. Outliers are defined as values that fall below Q1 - 1.5*IQR or above Q3 + 1.5*IQR. The function returns a sorted DataFrame containing all rows where the specified column has outlier values.</p>
+                        
+                        <h3>Parameters</h3>
+                        <ul>
+                            <li><code>df</code>: pandas.DataFrame
+                                <ul>
+                                    <li>The DataFrame containing the data to analyze</li>
+                                </ul>
+                            </li>
+                            <li><code>column</code>: str
+                                <ul>
+                                    <li>The name of the numeric column to check for outliers</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <h3>Returns</h3>
+                        <p>pandas.DataFrame: A sorted DataFrame containing only the rows where the specified column has outlier values</p>
+
+                        <h3>Raises</h3>
+                        <ul>
+                            <li><code>ValueError</code>: If the specified column doesn't exist in the DataFrame</li>
+                            <li><code>TypeError</code>: If the specified column is not numeric</li>
+                        </ul>
+
+                        <h3>Example</h3>
+                        <pre class="line-numbers"><code class="language-python">import pandas as pd
+
+def get_outliers(df, column):
+    # Verificar si la columna existe y es numérica
+    if column not in df.columns:
+        raise ValueError(f"La columna '{column}' no existe en el DataFrame.")
+    
+    if not pd.api.types.is_numeric_dtype(df[column]):
+        raise TypeError(f"La columna '{column}' no es numérica.")
+
+    # Calcular cuartiles e IQR
+    Q1 = df[column].quantile(0.25)
+    Q3 = df[column].quantile(0.75)
+    IQR = Q3 - Q1
+
+    # Definir límites
+    lower_bound = Q1 - 1.5 * IQR
+    upper_bound = Q3 + 1.5 * IQR
+
+    # Filtrar y ordenar los outliers
+    outliers = df[(df[column] < lower_bound) | (df[column] > upper_bound)]
+    outliers_sorted = outliers.sort_values(by=column)
+
+    return outliers_sorted
+
+# Example usage:
+df = pd.DataFrame({
+    'age': [25, 30, 35, 40, 45, 90, 15, 32, 38, 100],
+    'salary': [50000, 60000, 55000, 65000, 58000, 1000000, 20000, 62000, 59000, 950000]
+})
+
+# Get outliers for salary
+salary_outliers = get_outliers(df, 'salary')
+print("Salary outliers:")
+print(salary_outliers)
+
+# Get outliers for age
+age_outliers = get_outliers(df, 'age')
+print("\nAge outliers:")
+print(age_outliers)</code></pre>
+
+                        <h3>Example Output</h3>
+                        <pre class="line-numbers"><code class="language-text">Salary outliers:
+   age  salary
+5   90  1000000
+9  100   950000
+
+Age outliers:
+   age  salary
+6   15   20000
+5   90  1000000
+9  100   950000</code></pre>
+
+                        <h3>Features</h3>
+                        <ul>
+                            <li>Uses robust IQR method for outlier detection</li>
+                            <li>Input validation for column existence and type</li>
+                            <li>Automatic sorting of results</li>
+                            <li>Returns complete rows for context</li>
+                            <li>Handles both upper and lower outliers</li>
+                        </ul>
+
+                        <h3>Method Details</h3>
+                        <ul>
+                            <li>Q1: 25th percentile of the data</li>
+                            <li>Q3: 75th percentile of the data</li>
+                            <li>IQR: Interquartile Range (Q3 - Q1)</li>
+                            <li>Lower bound: Q1 - 1.5 * IQR</li>
+                            <li>Upper bound: Q3 + 1.5 * IQR</li>
+                        </ul>
+
+                        <h3>Common Use Cases</h3>
+                        <ul>
+                            <li>Data cleaning and preprocessing</li>
+                            <li>Identifying anomalous values</li>
+                            <li>Quality control checks</li>
+                            <li>Feature engineering decisions</li>
+                            <li>Statistical analysis preparation</li>
+                        </ul>
+
+                        <h3>Best Practices</h3>
+                        <ul>
+                            <li>Always check the context of outliers before removal</li>
+                            <li>Consider domain knowledge when interpreting results</li>
+                            <li>Use in conjunction with visualization methods</li>
+                            <li>Document outlier handling decisions</li>
+                            <li>Consider alternative methods for skewed distributions</li>
+                        </ul>
+
+                        <h3>Dependencies</h3>
+                        <ul>
+                            <li>pandas: Data manipulation and analysis</li>
+                        </ul>
+
+                        <h3>Related Functions</h3>
+                        <ul>
+                            <li><code>boxplots()</code>: Visual representation of outliers</li>
+                            <li><code>describe2()</code>: Statistical summary including outlier-sensitive measures</li>
                         </ul>
                     </div>
                 </div>
